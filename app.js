@@ -1100,16 +1100,18 @@
                     callbackUrl: location.origin + location.pathname + '#/payment/callback'
                 })
             })
-                .then(r => { if (!r.ok) throw new Error('gateway ' + r.status); return r.json() })
-                .then(j => {
+                .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, status: r.status, j })))
+                .then(({ ok, status, j }) => {
+                    if (!ok) throw new Error(j && j.error ? j.error : ('gateway ' + status));
                     const url = j.redirectUrl || j.url || j.payment_url || (j.data && j.data.redirectUrl);
-                    if (!url) throw new Error('no redirectUrl');
+                    if (!url) throw new Error(j && j.error ? j.error : 'Gateway response did not include a redirect URL.');
                     persist(); window.location.href = url;
                 })
-                .catch(() => {
+                .catch(err => {
                     order.status = 'failed'; order.failReason = 'gateway_unavailable'; persist();
                     btn.disabled = false; coSummaryFor(ev);
-                    payFailModal('Payment could not be started', 'We couldn\u2019t reach the payment gateway. No charge has been made and no ticket was issued \u2014 please try again in a moment.');
+                    console.error('SSLCommerz create-session failed:', err);
+                    payFailModal('Payment could not be started', (err && err.message ? esc(err.message) : 'We couldn\u2019t reach the payment gateway.') + ' No charge has been made and no ticket was issued \u2014 please try again in a moment.');
                 });
         }
         function finalizeOrder(order, txnId) {
@@ -2274,8 +2276,15 @@
                         description: 'Eventora pending order', callbackUrl: location.origin + location.pathname + '#/payment/callback'
                     })
                 })
-                    .then(r => r.json()).then(j => { const url = j.redirectUrl || j.url || j.payment_url; if (url) window.location.href = url; else throw new Error('no url') })
-                    .catch(() => payFailModal('Payment could not be resumed', 'We couldn\u2019t reach the payment gateway. Your order remains pending \u2014 no charge has been made.'));
+                    .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, j })))
+                    .then(({ ok, j }) => {
+                        if (!ok) throw new Error(j && j.error ? j.error : 'gateway error');
+                        const url = j.redirectUrl || j.url || j.payment_url; if (url) window.location.href = url; else throw new Error(j && j.error ? j.error : 'no redirect url')
+                    })
+                    .catch(err => {
+                        console.error('SSLCommerz resume failed:', err);
+                        payFailModal('Payment could not be resumed', (err && err.message ? esc(err.message) : 'We couldn\u2019t reach the payment gateway.') + ' Your order remains pending \u2014 no charge has been made.');
+                    });
             },
             'pay-cancel': dd => {
                 const o = db.orders.find(x => x.id === dd.id); if (!o || o.status !== 'pending') return;
