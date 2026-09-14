@@ -1,0 +1,7 @@
+{
+  "name": "eventora",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Eventora — static frontend + Vercel serverless functions for SSLCommerz sandbox checkout."
+}
