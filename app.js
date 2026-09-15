@@ -335,13 +335,21 @@
             if (i >= 0) db.users[i] = Object.assign({}, db.users[i], shaped); else db.users.push(shaped);
             return shaped;
         }
-        function initGoogle(hostEl, roleParam) {
+        function initGoogle(hostEl, roleParam, tab) {
             if (!hostEl) return;
-            hostEl.innerHTML = '<button type="button" class="btn btn-g" style="width:100%;justify-content:center" data-action="google-signin" data-role="' + (roleParam || '') + '">'
+            hostEl.innerHTML = '<button type="button" class="btn btn-g" style="width:100%;justify-content:center" data-action="google-signin" data-role="' + (roleParam || '') + '" data-tab="' + (tab || 'login') + '">'
                 + '<svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.9 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.3 13 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.9 7.2l7.6 5.9c4.5-4.1 7.1-10.2 7.1-17.6z"/><path fill="#FBBC05" d="M10.5 19.3c-.5 1.5-.8 3.1-.8 4.7s.3 3.2.8 4.7l-7.9 6.1C1 31.5 0 27.9 0 24s1-7.5 2.6-10.8l7.9 6.1z"/><path fill="#34A853" d="M24 48c6.3 0 11.6-2.1 15.5-5.6l-7.6-5.9c-2.1 1.4-4.8 2.3-7.9 2.3-6.4 0-11.7-3.5-13.6-9.3l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>'
                 + ' Continue with Google</button>';
         }
-        async function googleSignIn() {
+        /* Remembers what the person actually clicked (Register-as-X vs Sign In) across the
+           full-page redirect to Google and back \u2014 sessionStorage survives that round trip,
+           in-memory JS state does not. Consumed (read-once) by landAfterAuthCallback. */
+        function consumeAuthIntent() {
+            try { const raw = sessionStorage.getItem('ev_auth_intent'); sessionStorage.removeItem('ev_auth_intent'); return raw ? JSON.parse(raw) : null; }
+            catch (e) { return null }
+        }
+        async function googleSignIn(tab, role) {
+            try { sessionStorage.setItem('ev_auth_intent', JSON.stringify({ tab: tab || 'login', role: role || '' })); } catch (e) { }
             const { error } = await sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
             if (error) toast('Google sign-in failed: ' + error.message, 'err');
         }
@@ -551,6 +559,20 @@
         }
         function openModal(html, cls) { document.getElementById('modal-root').innerHTML = '<div class="modal-back"><div class="modal glass-hi ' + (cls || '') + '">' + html + '</div></div>'; document.body.classList.add('no-scroll') }
         function closeModal() { document.getElementById('modal-root').innerHTML = ''; if (!document.getElementById('pal')) document.body.classList.remove('no-scroll') }
+        function closeMMenu() {
+            const mm = document.getElementById('mmenu'); if (mm) mm.classList.remove('open');
+            const bd = document.getElementById('mmenu-backdrop'); if (bd) bd.classList.remove('open');
+            const btn = document.querySelector('.mmenu-btn'); if (btn) btn.innerHTML = ic('menu', 18);
+            if (!document.getElementById('modal-root').innerHTML && !document.getElementById('pal')) document.body.classList.remove('no-scroll');
+        }
+        function toggleMMenu() {
+            const mm = document.getElementById('mmenu'); if (!mm) return;
+            if (mm.classList.contains('open')) { closeMMenu(); return }
+            mm.classList.add('open');
+            const bd = document.getElementById('mmenu-backdrop'); if (bd) bd.classList.add('open');
+            const btn = document.querySelector('.mmenu-btn'); if (btn) btn.innerHTML = ic('x', 18);
+            document.body.classList.add('no-scroll');
+        }
         function qrInto(host, text) {
             host.innerHTML = '';
             try {
@@ -615,7 +637,9 @@
                         : '<a href="#/admin">Command Center</a><a href="#/admin/stages">Stages</a><a href="#/admin/guests">Guest Flow</a><a href="#/admin/telemetry">Telemetry</a><a href="#/admin/settings">Settings</a>');
             return '<header class="' + (u ? 'cnav' : 'pnav') + '"><div class="nav-in">' + brandHTML(34) + (role === 'admin' ? '<span class="brand-pill">Superadmin</span>' : '')
                 + '<button class="search-pill" data-action="open-palette" aria-label="Search">' + ic('search', 15) + '<span>Global telemetry search</span><kbd>\u2318K</kbd></button>'
-                + '<nav class="nav-links">' + links + '</nav><div class="nav-right">' + syspill + rightSide + '</div></div><div class="mmenu" id="mmenu">' + mmenu + '</div></header>';
+                + '<nav class="nav-links">' + links + '</nav><div class="nav-right">' + syspill + rightSide + '</div></div>'
+                + '<div class="mmenu-backdrop" id="mmenu-backdrop" data-close="mmenu"></div>'
+                + '<div class="mmenu" id="mmenu"><div class="mmenu-head"><span class="mmenu-title">Menu</span><button class="icon-btn" data-close="mmenu" aria-label="Close menu">' + ic('x', 18) + '</button></div><div class="mmenu-links">' + mmenu + '</div></div></header>';
         }
         function notifDD() {
             const list = myNotifs().slice(0, 5);
@@ -857,8 +881,8 @@
                 + '<p class="small mut mt16">' + ic('lock', 12) + ' Messages are stored in the operations inbox on this node.</p></form></div>'
                 + '<div style="display:flex;flex-direction:column;gap:20px">'
                 + '<div class="glass" style="padding:22px"><b style="font:700 15px var(--fd)">Direct channels</b>'
-                + '<div class="fin-row mt16"><span>' + ic('mail', 14) + ' Sales desk</span><b style="color:var(--cyan2)">sales@eventora.io</b></div>'
-                + '<div class="fin-row"><span>' + ic('help', 14) + ' Support</span><b style="color:var(--cyan2)">support@eventora.io</b></div>'
+                + '<div class="fin-row mt16"><span>' + ic('mail', 14) + ' Sales desk</span><b style="color:var(--cyan2)">rowdroofficial@gmail.com</b></div>'
+                + '<div class="fin-row"><span>' + ic('help', 14) + ' Support</span><b style="color:var(--cyan2)">rowdroofficial@gmail.com</b></div>'
                 + '<div class="fin-row"><span>' + ic('globe', 14) + ' HQ</span><b>Dhaka \u00b7 Gulshan Ave</b></div></div>'
                 + '<div class="glass" style="padding:22px"><b style="font:700 15px var(--fd)">Response targets</b>'
                 + '<div class="fin-row mt16"><span>Enterprise inquiries</span><b style="color:var(--green)">&lt; 3h</b></div>'
@@ -907,7 +931,7 @@
                 + '<li><b>Correction</b> \u2014 edit your name, title and organization from Profile & Settings.</li>'
                 + '<li><b>Deletion</b> \u2014 contact the operations desk to erase your account and associated records.</li></ul>'
                 + '<h3>6 \u00b7 Contact</h3>'
-                + '<p>Questions about this policy: <a href="#/contact" style="color:var(--cyan2)">privacy@eventora.io via the contact page</a>.</p>'
+                + '<p>Questions about this policy: <a href="#/contact" style="color:var(--cyan2)">rowdroofficial@gmail.com via the contact page</a>.</p>'
                 + '<p class="upd">Last updated: January 2026 \u00b7 Applies to all Eventora OS nodes.</p>'
                 + '</div>' + publicFooter();
         }
@@ -934,7 +958,7 @@
                 + '<h3>8 \u00b7 Liability & Changes</h3>'
                 + '<p>The service is provided on its published SLA (99.95% gate mesh uptime target). To the maximum extent permitted by law, Eventora\u2019s liability is limited to the platform fees on the affected orders. These terms may be updated; material changes are announced on the platform.</p>'
                 + '<h3>9 \u00b7 Contact</h3>'
-                + '<p>Legal questions: <a href="#/contact" style="color:var(--cyan2)">legal@eventora.io via the contact page</a>.</p>'
+                + '<p>Legal questions: <a href="#/contact" style="color:var(--cyan2)">rowdroofficial@gmail.com via the contact page</a>.</p>'
                 + '<p class="upd">Last updated: January 2026 \u00b7 Version 4.2</p>'
                 + '</div>' + publicFooter();
         }
@@ -964,7 +988,7 @@
                 + '<button class="btn btn-p w100 lg" type="submit">' + ic('lock', 15) + ' Update Password</button></form></div></div>' + publicFooter();
         }
         function authShell(tab, next, preRole) {
-            after(() => { initGoogle(document.getElementById('gbtn'), preRole) });
+            after(() => { initGoogle(document.getElementById('gbtn'), preRole, tab) });
             return topNav('')
                 + '<div class="auth-wrap"><div class="glass-hi auth-card">'
                 + '<div class="logo-big">' + logo(46) + '</div>'
@@ -2027,6 +2051,11 @@
             return topNav('') + '<div class="wrap" style="padding:100px 0">' + emptyState('search', 'Signal lost \u2014 404', 'This arena node does not exist or has been decommissioned.', '#/events', 'Explore Events') + '</div>' + (session() ? consoleFooter() : publicFooter());
         }
         function guardLogin(next) {
+            if (SESSION_CHECK_PENDING) {
+                /* A Supabase session token is in storage and still being verified \u2014 show a
+                   neutral loading state instead of bouncing to Sign In and right back. */
+                return '<div class="wrap" style="padding:160px 0;text-align:center"><div class="spin" style="width:28px;height:28px;border-width:3px;margin:0 auto 16px"></div><p class="mut">Loading your session\u2026</p></div>';
+            }
             const n = next || location.hash;
             toast('Please sign in to continue.', 'warn');
             location.hash = '#/login?next=' + encodeURIComponent(n); return '';
@@ -2155,7 +2184,7 @@
             timers.forEach(clearInterval); timers = []; afterHooks.length = 0;
             document.getElementById('modal-root').innerHTML = ''; document.body.classList.remove('no-scroll');
             $$('.dd-wrap.open').forEach(dd => dd.classList.remove('open'));
-            const mm = document.getElementById('mmenu'); if (mm) mm.classList.remove('open');
+            closeMMenu();
             const sameHash = location.hash === lastRenderedHash;
             RENDER_SAME = sameHash;
             const scrollY = window.scrollY;
@@ -2194,9 +2223,9 @@
         }
         const Actions = {
             'open-palette': () => paletteOpen(),
-            'mobile-nav': () => { const m = document.getElementById('mmenu'); if (m) m.classList.toggle('open') },
+            'mobile-nav': () => toggleMMenu(),
             'signout': () => signOut(),
-            'google-signin': () => googleSignIn(),
+            'google-signin': (dd) => googleSignIn(dd.tab, dd.role),
             'pw-toggle': (dd, el) => {
                 const inp = document.getElementById(dd.target); if (!inp) return;
                 const showing = inp.type === 'text';
@@ -2458,7 +2487,7 @@
                 const fn = Actions[act.dataset.action]; if (fn) fn(act.dataset, act, e); return
             }
             const cl = e.target.closest('[data-close]');
-            if (cl) { closeModal(); return }
+            if (cl) { if (cl.dataset.close === 'mmenu') closeMMenu(); else closeModal(); return }
         });
         document.addEventListener('change', e => {
             const t = e.target;
@@ -2601,7 +2630,7 @@
         }
         document.addEventListener('keydown', e => {
             if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); paletteOpen() }
-            if (e.key === 'Escape') { if (PAL.open) paletteClose(); else if (document.getElementById('modal-root').innerHTML) closeModal() }
+            if (e.key === 'Escape') { if (PAL.open) paletteClose(); else if (document.getElementById('modal-root').innerHTML) closeModal(); else { const mm = document.getElementById('mmenu'); if (mm && mm.classList.contains('open')) closeMMenu() } }
         });
         window.addEventListener('resize', deb(fitMarquee, 200));
         const IMG_FB = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2038"/><stop offset="1" stop-color="#0b0f19"/></linearGradient></defs><rect width="800" height="450" fill="url(#g)"/><circle cx="400" cy="200" r="46" fill="none" stroke="#6366f1" stroke-opacity=".55" stroke-width="2"/><path d="M370 200l22 22 42-48" stroke="#8b5cf6" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="400" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#64748b">Eventora Visual Mesh</text></svg>');
@@ -2613,6 +2642,18 @@
         /* Never trust a leftover local session pointer \u2014 only a real, live Supabase session counts. */
         db.meta.sessionUserId = null;
         persist()
+        /* Peeking at localStorage synchronously for a persisted Supabase auth token tells us,
+           before the first paint, whether a hard reload on a guarded page (dashboard, etc.) is
+           likely to end up logged in once Supabase's own async session check resolves. If a
+           token is sitting there, guardLogin() shows a brief loading state instead of bouncing
+           to Sign In and immediately back \u2014 that flash-to-login-then-back was the whole bug. */
+        let SESSION_CHECK_PENDING = false;
+        try {
+            for (let i = 0; i < localStorage.length; i++) {
+                const k = localStorage.key(i);
+                if (k && /^sb-.*-auth-token$/.test(k)) { SESSION_CHECK_PENDING = true; break }
+            }
+        } catch (e) { /* localStorage inaccessible \u2014 fall back to the old (non-flickering-safe) behavior */ }
         window.addEventListener('hashchange', render);
         /* Remember whether we booted straight into a raw Supabase token bundle (Google OAuth
            return, magic link, or password-recovery link) BEFORE anything else touches the hash,
@@ -2630,9 +2671,34 @@
            shot. Gated on AUTH_CALLBACK_PENDING itself (not the live hash) so it can't be fooled
            by Supabase quietly stripping the token bundle out from under us, and can't double-fire
            if both the boot IIFE and onAuthStateChange race to call it. */
-        function landAfterAuthCallback(u) {
+        async function landAfterAuthCallback(u, authUser) {
             if (!AUTH_CALLBACK_PENDING) return; /* already handled elsewhere */
             AUTH_CALLBACK_PENDING = false;
+            const intent = consumeAuthIntent();
+            if (u && authUser && intent && intent.tab === 'register') {
+                /* Supabase sets created_at and last_sign_in_at to (near enough) the same
+                   instant only on a brand-new account's very first sign-in \u2014 a big gap
+                   between them means this Google identity already had an Eventora account,
+                   so clicking "Register" this time doesn't get to create a second one. */
+                const created = Date.parse(authUser.created_at || '');
+                const lastSignIn = Date.parse(authUser.last_sign_in_at || authUser.created_at || '');
+                const isBrandNew = created && Math.abs(lastSignIn - created) < 8000;
+                if (!isBrandNew) {
+                    db.meta.sessionUserId = null; persist();
+                    try { await sb.auth.signOut() } catch (e) { }
+                    toast('An account with this Google email already exists \u2014 please sign in instead.', 'warn');
+                    location.replace('#/login');
+                    lastRenderedHash = null; render();
+                    return;
+                }
+                if (intent.role && intent.role !== u.role) {
+                    try {
+                        await sb.from('profiles').update({ role: intent.role }).eq('id', u.id);
+                        u.role = intent.role; persist();
+                    } catch (e) { /* non-fatal \u2014 keep whatever role the trigger assigned */ }
+                }
+            }
+            if (u) toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok');
             location.replace(u ? homeFor(u) : '#/login');
             lastRenderedHash = null; render();
         }
@@ -2680,19 +2746,24 @@
                     if (!u) { await bailOnMissingProfile(); return }
                     db.meta.sessionUserId = sbSession.user.id; persist();
                     if (AUTH_CALLBACK_PENDING) {
-                        toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok');
-                        landAfterAuthCallback(u);
+                        landAfterAuthCallback(u, sbSession.user);
                     } else { lastRenderedHash = null; render(); }
                 } else if (AUTH_CALLBACK_PENDING && !PW_RECOVERY_READY) {
                     const m = /error_description=([^&]+)/.exec(BOOT_HASH);
                     toast(m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : 'Sign-in could not be completed. Please try again.', 'err');
                     landAfterAuthCallback(null);
+                } else if (SESSION_CHECK_PENDING) {
+                    /* We suspected a session (a token was sitting in storage) but none came back
+                       \u2014 now safe to let guarded routes redirect to Sign In for real. */
+                    lastRenderedHash = null; render();
                 }
             } catch (e) {
                 console.warn('[Eventora] Supabase session check failed', e);
                 if (AUTH_CALLBACK_PENDING && !PW_RECOVERY_READY) { toast('Sign-in could not be completed. Please try again.', 'err'); landAfterAuthCallback(null) }
+                else if (SESSION_CHECK_PENDING) { lastRenderedHash = null; render(); }
             } finally {
                 BOOT_RESTORING = false;
+                SESSION_CHECK_PENDING = false;
             }
         })();
         sb.auth.onAuthStateChange(async (event, sbSession) => {
@@ -2714,8 +2785,7 @@
                         /* The boot IIFE above is also racing to handle this same fresh
                            OAuth-callback load \u2014 landAfterAuthCallback's own guard makes
                            sure only whichever gets here first actually navigates. */
-                        toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok');
-                        landAfterAuthCallback(u);
+                        landAfterAuthCallback(u, sbSession.user);
                     } else if (BOOT_RESTORING) {
                         /* Just an existing session being restored on a normal page load (e.g.
                            the browser landing back on #/payment/callback after a gateway
