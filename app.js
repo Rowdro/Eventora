@@ -691,7 +691,6 @@
             return (db.meta.maintenance ? '<div class="banner">' + ic('warn', 13) + ' Scheduled mesh maintenance window \u2014 ticketing remains fully operational.</div>' : '')
                 + topNav('home')
                 + '<section class="hero-sec"><div class="wrap hero-in"><div class="hero-copy">'
-                + '<span class="pill pill-vio rise" style="--d:0"><span class="dot g pulse"></span>Stage-Ready Capacity Active \u00b7 ' + live + ' Event' + (live === 1 ? '' : 's') + ' Live in Synergy</span>'
                 + '<h1 class="rise" style="--d:1">Orchestrate Unforgettable <span class="grad-text">Experiences</span> in Pure Glass Fidelity</h1>'
                 + '<p class="sub rise" style="--d:2">Eventora gives producers of high-stakes summits, immersive music festivals and global arena broadcasts a single operating system \u2014 from the first ticket sold to the final gate telemetry.</p>'
                 + '<div class="hero-cta rise" style="--d:3"><a class="btn btn-p lg" href="#/events">' + ic('search', 16) + ' Explore Events</a><a class="btn btn-g lg" href="#/register?role=organizer">' + ic('spark', 16) + ' Register as Organizer</a></div>'
@@ -2665,6 +2664,13 @@
            redirect). The SDK parses the token bundle out of the URL internally; once
            getSession() resolves we know whether it worked and can send the user straight to
            their dashboard \u2014 or, if it failed, off the broken URL and back to Sign In. ---- */
+        /* True only during this initial page-load session restore. While true, a SIGNED_IN
+           event from onAuthStateChange (which races the getSession() call below on every
+           fresh load, not just OAuth callbacks) must NOT navigate the user away \u2014 it should
+           just sync the session quietly so whatever page they landed on (e.g. a payment
+           gateway redirect back to #/payment/callback) stays put instead of being yanked to
+           their dashboard mid-render. */
+        let BOOT_RESTORING = true;
         (async () => {
             try {
                 const { data: { session: sbSession } } = await sb.auth.getSession();
@@ -2685,6 +2691,8 @@
             } catch (e) {
                 console.warn('[Eventora] Supabase session check failed', e);
                 if (AUTH_CALLBACK_PENDING && !PW_RECOVERY_READY) { toast('Sign-in could not be completed. Please try again.', 'err'); landAfterAuthCallback(null) }
+            } finally {
+                BOOT_RESTORING = false;
             }
         })();
         sb.auth.onAuthStateChange(async (event, sbSession) => {
@@ -2708,6 +2716,12 @@
                            sure only whichever gets here first actually navigates. */
                         toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok');
                         landAfterAuthCallback(u);
+                    } else if (BOOT_RESTORING) {
+                        /* Just an existing session being restored on a normal page load (e.g.
+                           the browser landing back on #/payment/callback after a gateway
+                           redirect) \u2014 sync state and redraw the CURRENT route only. Do not
+                           steal the user away to their dashboard. */
+                        lastRenderedHash = null; render();
                     } else {
                         lastRenderedHash = null; render();
                         toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok'); location.hash = homeFor(u);
