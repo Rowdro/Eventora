@@ -671,7 +671,7 @@
             const unread = unreadCount();
             let rightSide;
             if (u) {
-                rightSide = '<div class="dd-wrap"><button class="icon-btn" data-dd aria-label="Notifications">' + ic('bell', 17) + (unread ? '<span class="bdg">' + unread + '</span>' : '') + '</button><div class="dd" style="width:min(320px,calc(100vw - 24px))">' + notifDD() + '</div></div>'
+                rightSide = '<div class="dd-wrap dd-notif-wrap"><button class="icon-btn" data-dd aria-label="Notifications">' + ic('bell', 17) + (unread ? '<span class="bdg">' + unread + '</span>' : '') + '</button><div class="dd dd-notif" style="width:min(320px,calc(100vw - 24px))">' + notifDD() + '</div></div>'
                     + '<div class="dd-wrap"><button class="ubeat" data-dd><span class="uinfo"><span class="nm">' + esc(u.name) + '</span><span class="rl">' + esc(u.title || u.role) + '</span></span>' + (u.avatarSeed ? '<img class="avatar" src="' + esc(u.avatarSeed) + '" alt="">' : '<span class="avatar avx">' + initials(u.name) + '</span>') + '</button>'
                     + '<div class="dd"><div class="dd-h">' + esc(u.email) + ' \u00b7 ' + u.role + '</div>'
                     + '<button class="dd-it" data-go="' + ROLE_HOME[u.role] + '">' + ic('grid', 15) + ' ' + (u.role === 'admin' ? 'Command Center' : u.role === 'organizer' ? 'Organizer Dashboard' : 'My Dashboard') + '</button>'
