@@ -7,13 +7,15 @@ window.EVENTORA_CONFIG = {
     googleClientId: '',
     authVerifyEndpoint: '',
 
-    // Social links shown in the footer (optional).
+    // Social links shown in the footer. Point these at your organization's real
+    // profile pages — defaults below go to each platform's official site so the
+    // icons are live out of the box; swap in your own handles when you have them.
     social: {
-        facebook: '',
-        instagram: '',
-        linkedin: '',
-        x: '',
-        youtube: ''
+        facebook: 'https://www.facebook.com',
+        instagram: 'https://www.instagram.com',
+        linkedin: 'https://www.linkedin.com',
+        x: 'https://x.com',
+        youtube: 'https://www.youtube.com'
     },
 
     // Payment gateway — wired to the SSLCommerz sandbox serverless functions

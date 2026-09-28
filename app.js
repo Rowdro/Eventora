@@ -91,9 +91,19 @@
         }
         const ICONS = { search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>', bell: '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>', zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>', ticket: '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>', users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>', pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>', cal: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>', clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', check: '<polyline points="20 6 9 17 4 12"/>', checkc: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>', x: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>', plus: '<path d="M5 12h14"/><path d="M12 5v14"/>', dl: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>', chevD: '<path d="m6 9 6 6 6-6"/>', chevL: '<path d="m15 18-6-6 6-6"/>', chevR: '<path d="m9 18 6-6-6-6"/>', arrR: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>', qr: '<rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16h.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/>', cpu: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/>', music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>', palette: '<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>', gamepad: '<line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>', heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>', activity: '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>', shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>', dollar: '<line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>', card: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>', mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>', send: '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>', refresh: '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>', more: '<circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/>', settings: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>', layers: '<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>', building: '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/><path d="M12 14h.01"/>', radio: '<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.2 19.1 19.1"/>', edit: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>', trash: '<path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>', eye: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>', eyeoff: '<path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.53 13.53 0 0 0 2 11.5s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M2 2l20 20"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/>', out: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>', menu: '<line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>', spark: '<path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>', globe: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>', lock: '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>', brief: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>', cam: '<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>', star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>', flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/>', ban: '<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>', grid: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>', bank: '<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>', mic: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>', image: '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>', cloud: '<path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>', info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>', warn: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 20h16a2 2 0 0 0 1.73-2Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>', help: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>', crown: '<path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.735H5.81a1 1 0 0 1-.957-.735L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/>', gauge: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>', door: '<path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.562Z"/>', tv: '<rect width="20" height="15" x="2" y="3" rx="2"/><polyline points="8 21 12 17 16 21"/>', link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>' };
         const ic = (n, s, st) => { s = s || 18; return '<svg class="ic" width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (st || 2) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[n] || '') + '</svg>' };
-        const SOCIAL = { facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>', instagram: '<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>', linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>', x: '<path fill="currentColor" stroke="none" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>', youtube: '<path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/>' };
+        /* Real, brand-colored logo marks (self-contained SVG, not stroke outlines) so the
+           footer's social row reads as actual Facebook/Instagram/LinkedIn/X/YouTube logos
+           rather than generic monochrome icons. */
+        let SOC_N = 0;
+        const SOCIAL_LOGOS = {
+            facebook: () => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#1877F2"/><path d="M15.5 8.5h-1.6c-.5 0-.9.4-.9 1v1.5h2.4l-.34 2.3h-2.06V19h-2.4v-5.7H8.5v-2.3h1.64V9.2c0-1.72 1.02-2.7 2.72-2.7h1.64v2z" fill="#fff"/></svg>',
+            instagram: () => { const id = 'igGrad' + (++SOC_N); return '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="' + id + '" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#d62976"/><stop offset=".7" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#' + id + ')"/><rect x="6" y="6" width="12" height="12" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="3.1" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>' },
+            linkedin: () => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#0A66C2"/><path d="M7.6 9.7h2.2V17H7.6V9.7zM8.7 6.1a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6zM11.4 9.7h2.1v1c.3-.5 1-1.2 2.3-1.2 1.7 0 2.9 1.1 2.9 3.5V17h-2.2v-3.8c0-1-.4-1.7-1.3-1.7-.7 0-1.2.5-1.4 1-.1.2-.1.5-.1.8V17h-2.2l-.1-7.3z" fill="#fff"/></svg>',
+            x: () => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#000"/><path d="M13.6 10.9 18 6h-1.7l-3.8 4.3L9.4 6H5l4.7 6.8L5 18h1.7l4-4.6L14 18h4.4l-4.8-7.1zM12.2 12.5l-.5-.7L7.7 7.2h1.6l3 4.3.5.7 3.9 5.6h-1.6l-3.2-4.6z" fill="#fff"/></svg>',
+            youtube: () => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="6" fill="#FF0000"/><path d="M10 8.6v6.8l6-3.4z" fill="#fff"/></svg>'
+        };
         const SOCIAL_META = { facebook: ['Facebook', 'SOCIAL_FACEBOOK_URL'], instagram: ['Instagram', 'SOCIAL_INSTAGRAM_URL'], linkedin: ['LinkedIn', 'SOCIAL_LINKEDIN_URL'], x: ['X (Twitter)', 'SOCIAL_X_URL'], youtube: ['YouTube', 'SOCIAL_YOUTUBE_URL'] };
-        const socIcon = (k, s) => { s = s || 16; return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (SOCIAL[k] || '') + '</svg>' };
+        const socIcon = k => SOCIAL_LOGOS[k] ? SOCIAL_LOGOS[k]() : '';
         function socialLinks() {
             return Object.keys(SOCIAL_META).map(k => {
                 const meta = SOCIAL_META[k], url = CONFIG.social[k];
@@ -256,10 +266,41 @@
            local Bangladesh mobile wallets alongside cards; every other currency shows card +
            PayPal, which work for a buyer anywhere in the world. Same single gateway integration
            (createSessionUrl/verifyUrl) \u2014 just different rails offered per currency. */
-        const PAY_METHODS_BDT = [['bkash', 'bKash', '#e2136e'], ['nagad', 'Nagad', '#f6921e'], ['rocket', 'Rocket', '#8c3494'], ['card', 'Visa / Mastercard', '#38bdf8']];
-        const PAY_METHODS_INTL = [['card', 'Visa / Mastercard', '#38bdf8'], ['paypal', 'PayPal', '#003087']];
+        const PAY_METHODS_BDT = [['bkash', 'bKash', '#e2136e', 'bKash', 'Mobile wallet \u00b7 Instant'], ['nagad', 'Nagad', '#f6921e', 'Nagad', 'Mobile wallet \u00b7 Instant'], ['rocket', 'Rocket', '#8c3494', 'Rocket', 'Mobile wallet \u00b7 Instant'], ['card', 'Visa / Mastercard', '#38bdf8', 'card', 'Ending redirect to your bank']];
+        const PAY_METHODS_INTL = [['card', 'Visa / Mastercard', '#38bdf8', 'card', 'Ending redirect to your bank'], ['paypal', 'PayPal', '#003087', 'PayPal', 'Pay via balance, bank or card']];
         const payMethodsFor = code => code === 'BDT' ? PAY_METHODS_BDT : PAY_METHODS_INTL;
         const PAY_METHODS = PAY_METHODS_BDT; /* legacy alias for spots without currency context */
+        /* Small brand-styled wordmark/glyph badges for the checkout payment picker \u2014 rendered
+           as self-contained inline SVG (no external logo assets to fetch) so bKash, Nagad,
+           Rocket, Visa, Mastercard and PayPal are each instantly recognizable by their real
+           brand colors and marks instead of a generic card icon or plain text label. */
+        function payLogoSVG(key) {
+            const F = 'font-family:Arial,Helvetica,sans-serif';
+            const logos = {
+                bkash: '<svg viewBox="0 0 84 32" width="46" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="bKash">'
+                    + '<circle cx="12" cy="16" r="11" fill="#e2136e"/>'
+                    + '<path d="M12 8.5c3.4 0 6 2.7 6 6.2 0 2.7-1.6 4.9-4 5.8l-.4-1.7c1.6-.7 2.6-2.2 2.6-4.1 0-2.5-1.8-4.4-4.2-4.4-2.4 0-4.2 1.9-4.2 4.4 0 1.9 1 3.4 2.6 4.1l-.4 1.7c-2.4-.9-4-3.1-4-5.8 0-3.5 2.6-6.2 6-6.2z" fill="#fff"/>'
+                    + '<text x="28" y="21" ' + F + ' font-weight="800" font-style="italic" font-size="15" fill="#e2136e">bKash</text>'
+                    + '</svg>',
+                nagad: '<svg viewBox="0 0 84 32" width="46" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="Nagad">'
+                    + '<path d="M4 16 12 8l8 8-8 8z" fill="#ec1d25"/><path d="M12 8l8 8-8 8V8z" fill="#f6921e"/>'
+                    + '<text x="26" y="21" ' + F + ' font-weight="800" font-size="14" fill="#ec1d25">Nagad</text>'
+                    + '</svg>',
+                rocket: '<svg viewBox="0 0 84 32" width="46" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="Rocket">'
+                    + '<path d="M12 4c3 2 5 6 5 10.5 0 2-.5 3.8-1.3 5.3l-3.7 3-3.7-3C7.5 18.3 7 16.5 7 14.5 7 10 9 6 12 4z" fill="#8c3494"/><circle cx="12" cy="13" r="2.1" fill="#fff"/><path d="M9 21l-2 4 3.5-1.6L12 26l1.5-2.6L17 25l-2-4" fill="#8c3494"/>'
+                    + '<text x="26" y="21" ' + F + ' font-weight="800" font-size="13" fill="#8c3494">Rocket</text>'
+                    + '</svg>',
+                paypal: '<svg viewBox="0 0 84 32" width="52" height="18" xmlns="http://www.w3.org/2000/svg" aria-label="PayPal">'
+                    + '<text x="2" y="22" ' + F + ' font-weight="800" font-style="italic" font-size="17" fill="#003087">Pay</text>'
+                    + '<text x="32" y="22" ' + F + ' font-weight="800" font-style="italic" font-size="17" fill="#009cde">Pal</text>'
+                    + '</svg>',
+                card: '<svg viewBox="0 0 84 32" width="52" height="20" xmlns="http://www.w3.org/2000/svg" aria-label="Visa and Mastercard">'
+                    + '<text x="0" y="21" ' + F + ' font-weight="800" font-style="italic" font-size="14" fill="#1a1f71">VISA</text>'
+                    + '<circle cx="63" cy="16" r="9" fill="#eb001b"/><circle cx="74" cy="16" r="9" fill="#f79e1b" fill-opacity=".88"/>'
+                    + '</svg>'
+            };
+            return logos[key] || ic('card', 16);
+        }
         const orderByRef = ref => db.orders.find(o => o.intent && o.intent.ref === ref);
         function payPill(s) { const m = { pending: ['pill-warn', 'Pending'], paid: ['pill-green', 'Paid'], failed: ['pill-red', 'Failed'], cancelled: ['pill-mut', 'Cancelled'], refunded: ['pill-vio', 'Refunded'] }; const x = m[s] || m.pending; return '<span class="pill ' + x[0] + '">' + x[1] + '</span>' }
         const ROLE_HOME = { attendee: '#/attendee/dashboard', organizer: '#/organizer/dashboard', admin: '#/admin' };
@@ -529,7 +570,7 @@
                 + (showAttendees ? '<div><h5>Attendees</h5><a href="#/attendee/browse">Browse Events</a><a href="#/attendee/tickets">My Tickets</a><a href="#/attendee/registrations">My Registrations</a><a href="#/attendee/wishlist">Wishlist</a></div>' : '')
                 + (showOrganizers ? '<div><h5>Organizers</h5><a href="#/organizer/dashboard">Organizer Dashboard</a><a href="#/organizer/events/create">Create Event</a><a href="#/organizer/events">Manage Events</a><a href="#/organizer/analytics">Analytics</a></div>' : '')
                 + '<div><h5>Support</h5><a href="#/faq">Help & FAQ</a><a href="#/contact">Contact</a><a href="#/privacy">Privacy Policy</a><a href="#/terms">Terms & Conditions</a></div>'
-                + '</div><div class="lfoot-bot"><span>\u00a9 2026 Eventora. All rights reserved \u2014 Rowdro Mrong \u00b7 ISO 27001 Certified \u00b7 SOC 2 Type II Compliant</span><span><a href="#/login" style="color:var(--body)">Sign In</a> \u00b7 <a href="#/register" style="color:var(--body)">Register Stage</a></span></div></div></footer>';
+                + '</div><div class="lfoot-bot"><span>\u00a9 2026 Eventora. All rights reserved \u2014 Rowdro Mrong</span><span><a href="#/login" style="color:var(--body)">Sign In</a> \u00b7 <a href="#/register" style="color:var(--body)">Register Stage</a></span></div></div></footer>';
         }
         function publicFooter() { return footerHTML(null); }
         function consoleFooter() { const u = session(); return footerHTML(u ? u.role : null); }
@@ -547,6 +588,17 @@
                 + '<p style="font:600 15px var(--fd);color:var(--text);margin-bottom:8px">This event has already taken place.</p>'
                 + '<p class="mut" style="margin-bottom:22px">Ticket purchases are no longer available for this experience.</p>'
                 + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-p" data-go="#/events">' + ic('search', 14) + ' Browse Events</button><button class="btn btn-g" data-close>Close</button></div></div>');
+        }
+        /* Shown when someone hits "Continue with Google" from the Register tab but that Google
+           email is already tied to an existing Eventora account \u2014 a clear, unmissable pop
+           instead of a toast that's easy to miss, pointing them straight at Sign In. */
+        function openDuplicateAccountModal(email) {
+            openModal('<div class="modal-h"><h3>Account Already Exists</h3><button class="mclose" data-close>' + ic('x', 16) + '</button></div>'
+                + '<div class="modal-b" style="text-align:center">'
+                + '<div class="okring amb" style="width:72px;height:72px;margin:6px auto 18px">' + ic('user', 30, 2) + '</div>'
+                + '<p style="font:600 15px var(--fd);color:var(--text);margin-bottom:8px">You already have an Eventora account' + (email ? ' for <span style="color:var(--cyan2)">' + esc(email) + '</span>' : '') + '.</p>'
+                + '<p class="mut" style="margin-bottom:22px">Please sign in instead to continue \u2014 no need to create a second account.</p>'
+                + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn btn-p" data-action="goto-login">' + ic('door', 14) + ' Sign In to Continue</button><button class="btn btn-g" data-close>Cancel</button></div></div>');
         }
         function toast(msg, type) {
             type = type || 'ok';
@@ -623,7 +675,7 @@
                     + '<div class="dd-wrap"><button class="ubeat" data-dd><span class="uinfo"><span class="nm">' + esc(u.name) + '</span><span class="rl">' + esc(u.title || u.role) + '</span></span>' + (u.avatarSeed ? '<img class="avatar" src="' + esc(u.avatarSeed) + '" alt="">' : '<span class="avatar avx">' + initials(u.name) + '</span>') + '</button>'
                     + '<div class="dd"><div class="dd-h">' + esc(u.email) + ' \u00b7 ' + u.role + '</div>'
                     + '<button class="dd-it" data-go="' + ROLE_HOME[u.role] + '">' + ic('grid', 15) + ' ' + (u.role === 'admin' ? 'Command Center' : u.role === 'organizer' ? 'Organizer Dashboard' : 'My Dashboard') + '</button>'
-                    + (u.role === 'attendee' ? '<button class="dd-it" data-go="#/attendee/registrations">' + ic('cal', 15) + ' My Registrations</button><button class="dd-it" data-go="#/attendee/tickets">' + ic('ticket', 15) + ' My Tickets</button><button class="dd-it" data-go="#/attendee/wishlist">' + ic('heart', 15) + ' Wishlist</button>' : '')
+                    + (u.role === 'attendee' ? '<button class="dd-it" data-go="#/attendee/registrations">' + ic('cal', 15) + ' My Registrations</button><button class="dd-it" data-go="#/attendee/tickets">' + ic('ticket', 15) + ' My Tickets</button><button class="dd-it" data-go="#/attendee/wishlist">' + ic('heart', 15) + ' Wishlist</button><button class="dd-it" data-go="#/billing">' + ic('card', 15) + ' Billing & Orders</button>' : '')
                     + (u.role === 'organizer' ? '<button class="dd-it" data-go="#/organizer/events">' + ic('layers', 15) + ' My Events</button><button class="dd-it" data-go="#/organizer/analytics">' + ic('activity', 15) + ' Analytics</button><button class="dd-it" data-go="#/organizer/attendees">' + ic('users', 15) + ' Attendees</button>' : '')
                     + '<button class="dd-it" data-go="#/notifications">' + ic('bell', 15) + ' Notifications</button><button class="dd-it" data-go="#/profile">' + ic('user', 15) + ' Profile & Settings</button>'
                     + '<div class="dd-sep"></div><button class="dd-it danger" data-action="signout">' + ic('out', 15) + ' Sign Out</button></div></div>'
@@ -632,14 +684,14 @@
                 rightSide = '<a class="btn btn-g sm" href="#/login">Sign In</a><a class="btn btn-p sm" href="#/register">Get Started</a><button class="icon-btn mmenu-btn" data-action="mobile-nav" aria-label="Menu">' + ic('menu', 18) + '</button>';
             }
             const mmenu = !u ? '<a href="#/">Home</a><a href="#/events">Events</a><a href="#/about">About</a><a href="#/contact">Contact</a><a href="#/faq">Help & FAQ</a><a href="#/login">Sign In</a><a href="#/register">Get Started</a>'
-                : (role === 'attendee' ? '<a href="#/attendee/dashboard">Dashboard</a><a href="#/attendee/browse">Browse Events</a><a href="#/attendee/tickets">My Tickets</a><a href="#/attendee/registrations">My Registrations</a><a href="#/attendee/wishlist">Wishlist</a><a href="#/notifications">Notifications</a><a href="#/profile">Profile</a>'
+                : (role === 'attendee' ? '<a href="#/attendee/dashboard">Dashboard</a><a href="#/attendee/browse">Browse Events</a><a href="#/attendee/tickets">My Tickets</a><a href="#/attendee/registrations">My Registrations</a><a href="#/attendee/wishlist">Wishlist</a><a href="#/billing">Billing & Orders</a><a href="#/notifications">Notifications</a><a href="#/profile">Profile</a>'
                     : role === 'organizer' ? '<a href="#/organizer/dashboard">Dashboard</a><a href="#/organizer/events">My Events</a><a href="#/organizer/events/create">Create Event</a><a href="#/organizer/attendees">Attendees</a><a href="#/organizer/analytics">Analytics</a><a href="#/notifications">Notifications</a><a href="#/profile">Profile</a>'
                         : '<a href="#/admin">Command Center</a><a href="#/admin/stages">Stages</a><a href="#/admin/guests">Guest Flow</a><a href="#/admin/telemetry">Telemetry</a><a href="#/admin/settings">Settings</a>');
             return '<header class="' + (u ? 'cnav' : 'pnav') + '"><div class="nav-in">' + brandHTML(34) + (role === 'admin' ? '<span class="brand-pill">Superadmin</span>' : '')
-                + '<button class="search-pill" data-action="open-palette" aria-label="Search">' + ic('search', 15) + '<span>Global telemetry search</span><kbd>\u2318K</kbd></button>'
-                + '<nav class="nav-links">' + links + '</nav><div class="nav-right">' + syspill + rightSide + '</div></div>'
+                + '<button class="search-pill" data-action="open-palette" aria-label="Search"><span>Global telemetry search</span></button>'
+                + '<nav class="nav-links">' + links + '</nav><div class="nav-right">' + syspill + rightSide + '</div></div></header>'
                 + '<div class="mmenu-backdrop" id="mmenu-backdrop" data-close="mmenu"></div>'
-                + '<div class="mmenu" id="mmenu"><div class="mmenu-head"><span class="mmenu-title">Menu</span><button class="icon-btn" data-close="mmenu" aria-label="Close menu">' + ic('x', 18) + '</button></div><div class="mmenu-links">' + mmenu + '</div></div></header>';
+                + '<div class="mmenu" id="mmenu"><div class="mmenu-head"><span class="mmenu-title">Menu</span><button class="mmenu-close" data-close="mmenu" aria-label="Close menu">' + ic('x', 18) + '</button></div><div class="mmenu-links">' + mmenu + '</div></div>';
         }
         function notifDD() {
             const list = myNotifs().slice(0, 5);
@@ -695,6 +747,110 @@
         }
         window.__evPart1 = true;
 
+        /* ============ CINEMATIC HERO \u2014 scroll-scrubbed video + glass scene reveals ============
+           The landing page's #cineHero is re-created on every render() call (innerHTML swap),
+           so window-level listeners are bound exactly once (guarded by window.__cineBound) and
+           re-query the DOM fresh on every tick \u2014 if #cineHero isn't there (different route),
+           they simply no-op. initCineHero() is queued via after() on every LandingView render
+           to (re)attach the video's loadedmetadata handler and sync the very first frame. */
+        let cineDuration = 10, cineTarget = 0, cineCurrent = 0, cineRaf = 0, cineLastVideoTime = -1, cineLastSeekAt = 0;
+        let cineTX = 0, cineTY = 0, cineMX = 0, cineMY = 0;
+        const CINE_SCENES = [
+            { id: 'cScene0', in: [0, .03], out: [.07, .11], dir: -1 },
+            { id: 'cScene1', in: [.11, .16], out: [.20, .24], dir: 1 },
+            { id: 'cScene2', in: [.25, .30], out: [.35, .39], dir: -1 },
+            { id: 'cScene3', in: [.40, .45], out: [.49, .53], dir: 1 },
+            { id: 'cScene4', in: [.54, .59], out: [.63, .67], dir: -1 },
+            { id: 'cScene5', in: [.68, .72], out: [.76, .80], dir: 1 },
+            { id: 'cScene6', in: [.80, .84], out: [.87, .90], dir: -1 },
+            { id: 'cScene7', in: [.91, .95], out: null, dir: 0 },
+        ];
+        function cineClamp(v, a, b) { return Math.min(b, Math.max(a, v)) }
+        function cineEase(a, b, v) { const x = cineClamp((v - a) / (b - a), 0, 1); return x * x * (3 - 2 * x) }
+        function cineLerp(a, b, t) { return a + (b - a) * t }
+        function cineProgress(story) {
+            const rect = story.getBoundingClientRect();
+            const max = story.offsetHeight - window.innerHeight;
+            return max > 0 ? cineClamp(-rect.top / max, 0, 1) : 0;
+        }
+        function cineSeek(video, time) {
+            if (video.readyState < 2 || !Number.isFinite(time)) return;
+            const now = performance.now();
+            if (Math.abs(time - cineLastVideoTime) < .035 || now - cineLastSeekAt < 40) return;
+            cineLastVideoTime = time; cineLastSeekAt = now;
+            video.currentTime = time;
+        }
+        function cineSetScene(el, opacity, x, y, blur) {
+            if (!el) return;
+            el.style.opacity = opacity.toFixed(3);
+            el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+            el.style.filter = blur > .05 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+            el.classList.toggle('on', opacity > .5);
+        }
+        function cineRender(first) {
+            const story = document.getElementById('cineHero');
+            if (!story) { cineRaf = 0; return }
+            const video = document.getElementById('cineVideo');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            cineTarget = cineProgress(story);
+            cineCurrent = first || reduceMotion ? cineTarget : cineCurrent + (cineTarget - cineCurrent) * .20;
+            const p = cineCurrent;
+            cineMX = reduceMotion ? 0 : cineLerp(cineMX, cineTX, .12);
+            cineMY = reduceMotion ? 0 : cineLerp(cineMY, cineTY, .12);
+            story.style.setProperty('--cmx', cineMX.toFixed(4));
+            story.style.setProperty('--cmy', cineMY.toFixed(4));
+            if (video) cineSeek(video, Math.min(Math.max(0, p * cineDuration), Math.max(0, cineDuration - .02)));
+            CINE_SCENES.forEach(s => {
+                const el = document.getElementById(s.id); if (!el) return;
+                const inP = cineEase(s.in[0], s.in[1], p);
+                const outP = s.out ? cineEase(s.out[0], s.out[1], p) : 0;
+                const visible = inP * (1 - outP);
+                const blur = (1 - inP) * 7 + outP * 7;
+                /* Scenes fly in from their own edge and exit back toward it,
+                   so left-aligned copy reads as entering from the left. */
+                const x = s.dir * (56 * (1 - inP) + 38 * outP);
+                const y = s.dir ? 0 : 22 * (1 - inP) - 16 * outP;
+                cineSetScene(el, visible, x, y, blur);
+            });
+            cineRaf = 0;
+            const settled = Math.abs(cineTarget - cineCurrent) < .0007 && Math.abs(cineTX - cineMX) < .001 && Math.abs(cineTY - cineMY) < .001;
+            if (!reduceMotion && !settled) cineRaf = requestAnimationFrame(() => cineRender());
+        }
+        function cineRequestRender() { if (!cineRaf) cineRaf = requestAnimationFrame(() => cineRender()) }
+        function initCineHero() {
+            const video = document.getElementById('cineVideo');
+            if (!video) return;
+            video.muted = true; video.defaultMuted = true;
+            const kickDecode = () => {
+                /* iOS Safari won't decode/paint a frame from currentTime alone until the
+                   video has actually played once — scrubbing before that shows a black
+                   rectangle. A silent play() -> immediate pause() forces that first decode. */
+                const p = video.play();
+                if (p && typeof p.then === 'function') p.then(() => video.pause()).catch(() => {});
+                else video.pause();
+            };
+            video.addEventListener('loadedmetadata', () => { cineDuration = Number.isFinite(video.duration) ? video.duration : 10; kickDecode(); cineRender(true) });
+            if (video.readyState >= 1) kickDecode();
+            cineRender(true);
+            /* Mobile browsers can throttle/coalesce 'scroll' events during momentum
+               scrolling, which makes the scrub feel laggy or stuck. A cheap interval
+               tick covers that gap; it's registered in the router's own `timers` array
+               so render() already clears it automatically on every navigation. */
+            timers.push(setInterval(cineRequestRender, 90));
+            if (!window.__cineBound) {
+                window.__cineBound = true;
+                window.addEventListener('scroll', cineRequestRender, { passive: true });
+                window.addEventListener('touchmove', cineRequestRender, { passive: true });
+                window.addEventListener('resize', () => cineRender(true), { passive: true });
+                window.addEventListener('orientationchange', () => setTimeout(() => cineRender(true), 120));
+                window.addEventListener('pointermove', e => {
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    cineTX = e.clientX / window.innerWidth - .5; cineTY = e.clientY / window.innerHeight - .5;
+                    cineRequestRender();
+                }, { passive: true });
+            }
+        }
+
         function LandingView() {
             const u = session();
             if (u) { location.hash = homeFor(u); return '' }
@@ -712,9 +868,9 @@
             const verticals = [['tech-ai', 'cpu', '#818cf8', '128 Events'], ['music', 'music', '#f472b6', '96 Events'], ['business', 'brief', '#38bdf8', '48 Events'], ['creative', 'palette', '#fbbf24', '72 Events'], ['esports', 'gamepad', '#a78bfa', '56 Events'], ['wellness', 'heart', '#34d399', '34 Events']];
             const tsts = [['Ventra transmitted our 15,000-person summit without a single queue anomaly. The NFC VIP authentication is genuinely in a class of its own.', 'Isabella Ferreira', 'Production Director, Global Tech Summit', 'isabellaf'], ['The dynamic QR pass validation cadence eliminated organized touting at our last festival. We have never felt safer running a front gate.', 'Rafael Barbosa', 'Festival Director, PULSE LIVE', 'rafaelb'], ['The zero-paradigm gate check-in gives our VIP attendees a truly seamless arrival. We are never going back to paper doorways.', 'Sarah Chen', 'Head of Experiences, Solara Xpanse', 'sarahchenthird']];
             const featCards = [['edit', 'Curate & Architect', 'Design multi-tier arenas with precise tiered seating charts, VIP gated zones, and zero-friction attendee flows that thrive under peak demand.', [['Seating Engine', 'Dynamic'], ['VIP Zones', 'Gated']]], ['qr', 'Glass Ticketing & Dynamic QR', 'Cryptographically sealed, rotating QR hashes deter bot traffic and scalping. Each pass is tied to a single attendee with instant revocation.', [['QR Rotation', '15s Cipher'], ['ECDSA', '256-bit']]], ['radio', 'Telemetry & Gate Triage', 'Process 800+ admissions per minute with zero-latency turnstiles. Route live congestion cues to staging zones for instant operational response.', [['Ingest Latency', '0.14s Avg'], ['Throughput', '800+/min']]]];
-            return (db.meta.maintenance ? '<div class="banner">' + ic('warn', 13) + ' Scheduled mesh maintenance window \u2014 ticketing remains fully operational.</div>' : '')
-                + topNav('home')
-                + '<section class="hero-sec"><div class="wrap hero-in"><div class="hero-copy">'
+            const isDesktopHero = typeof window !== 'undefined' && window.innerWidth >= 1200;
+            if (isDesktopHero) after(initCineHero);
+            const staticHero = '<section class="hero-sec"><div class="wrap hero-in"><div class="hero-copy">'
                 + '<h1 class="rise" style="--d:1">Orchestrate Unforgettable <span class="grad-text">Experiences</span> in Pure Glass Fidelity</h1>'
                 + '<p class="sub rise" style="--d:2">Eventora gives producers of high-stakes summits, immersive music festivals and global arena broadcasts a single operating system \u2014 from the first ticket sold to the final gate telemetry.</p>'
                 + '<div class="hero-cta rise" style="--d:3"><a class="btn btn-p lg" href="#/events">' + ic('search', 16) + ' Explore Events</a><a class="btn btn-g lg" href="#/register?role=organizer">' + ic('spark', 16) + ' Register as Organizer</a></div>'
@@ -723,14 +879,119 @@
                 + (heroEv ? '<div class="glass-hi stage-main"><div class="hv-top">' + statePill(heroEv) + '<span class="pill pill-vip">VIP ' + Math.max(heroPct, 62) + '% Sold</span><span class="mono">REAL-TIME INVENTORY</span></div>'
                     + '<a class="hv-card" href="#/event/' + heroEv.id + '"><img src="' + coverOf(heroEv) + '" alt="' + esc(heroEv.title) + '"><div class="ovl"></div><div class="cnt">'
                     + '<span class="pill pill-live"><span class="dot g pulse"></span>' + (evLive(heroEv) ? 'Live Now' : 'On Sale') + ' \u00b7 ' + datePill(heroEv.startDate, heroEv.endDate) + '</span>'
-                    + '<h4>' + esc(heroEv.title) + ' \u00b7 Quantum Horizons</h4><p>' + fmtN(heroRegs) + ' of ' + fmtN(heroEv.capacity) + ' physical delegates confirmed. 140,000+ synchronized hybrid viewers across 4K multicast relays.</p></div></a>'
+                    + '<h4>' + esc(heroEv.title) + '</h4><p>' + fmtN(heroRegs) + ' of ' + fmtN(heroEv.capacity) + ' delegates confirmed.</p></div></a>'
                     + (london ? '<div class="hv-row"><span class="dot g pulse"></span><div><div class="t">LONDON SONIC ARENA</div><div class="s">The O2 Meridian Complex \u00b7 ' + fmtDate(london.startDate) + '</div></div><a class="btn btn-p" href="#/event/' + london.id + '">Claim VIP Pass</a></div>' : '') + '</div>'
                     + '<div class="glass float-card fc1"><span class="fc-ic" style="color:var(--green)">' + ic('users', 16) + '</span><div class="fc-t"><b class="tnum">' + fmtN(checkedInTotal) + '</b><span class="small mut">Checked-in across the live mesh</span></div></div>'
                     + '<div class="glass float-card fc2"><span class="fc-ic" style="color:var(--cyan2)">' + ic('ticket', 16) + '</span><div class="fc-t"><b class="tnum">' + fmtN(passVol) + '</b><span class="small mut">Passes issued on this node</span></div></div>'
                     : '<div class="glass-hi stage-main"><div class="empty"><b>No live events yet</b><p>Publish your first arena from the wizard.</p><a class="btn btn-p" href="#/register?role=organizer">Create Event</a></div></div>')
+                + '</div></div></section>';
+            const cineHero = '<section class="cine-hero" id="cineHero"><div class="cine-stage">'
+                + '<video id="cineVideo" class="cine-video" muted playsinline webkit-playsinline="true" x5-playsinline="true" disablePictureInPicture preload="auto"><source src="assets/hero-cinema.mp4" type="video/mp4"></video>'
+                + '<div class="cine-vignette"></div><div class="cine-shade"></div><div class="cine-grain"></div>'
+                + '<div class="cine-amb amb1"></div><div class="cine-amb amb2"></div><div class="cine-amb amb3"></div>'
+
+                // Scene 0 \u2014 LEFT: intro headline
+                + '<div class="cine-scene left" id="cScene0"><div class="cine-box intro">'
+                + '<span class="eyebrow">' + ic('spark', 13) + ' A new kind of event OS</span>'
+                + '<h1 class="cine-h1">Orchestrate Unforgettable <span class="grad-text">Experiences</span> in Pure Glass Fidelity</h1>'
+                + '<p class="cine-sub">Eventora gives producers of high-stakes summits, immersive music festivals and global arena broadcasts a single operating system \u2014 from the first ticket sold to the final gate telemetry.</p>'
+                + '<div class="hero-cta"><a class="btn btn-p lg" href="#/events">' + ic('search', 16) + ' Explore Events</a><a class="btn btn-g lg" href="#/register?role=organizer">' + ic('spark', 16) + ' Register as Organizer</a></div>'
                 + '</div></div>'
+
+                // Scene 1 \u2014 LEFT: trust at scale
+                + '<div class="cine-scene right" id="cScene1"><div class="cine-box">'
+                + '<span class="cine-tag">01 / TRUST AT SCALE</span>'
+                + '<h2 class="cine-h2">Built for the<br>biggest stages.</h2>'
+                + '<p class="cine-line">Five hundred arenas, zero dropped gates. The mesh holds when the doors burst open.</p>'
+                + '<div class="glass-hi cine-glass hero-trust"><div><b class="tnum">500+</b><span>Events Hosted</span></div><div><b class="tnum" style="color:var(--green)">99.99%</b><span>Live Uptime</span></div><div><b>' + ic('qr', 19) + '</b><span>Dynamic QR & NFC</span></div><div><b>' + ic('shield', 19) + '</b><span>Zero-Trust Gates</span></div></div>'
+                + '</div></div>'
+
+                // Scene 2 \u2014 RIGHT: live event, real data
+                + '<div class="cine-scene left" id="cScene2"><div class="cine-box">'
+                + '<span class="cine-tag">02 / LIVE NOW</span>'
+                + (heroEv ? '<div class="glass-hi stage-main cine-glass wide"><div class="hv-top">' + statePill(heroEv) + '<span class="pill pill-vip">VIP ' + Math.max(heroPct, 62) + '% Sold</span><span class="mono">REAL-TIME INVENTORY</span></div>'
+                    + '<a class="hv-card" href="#/event/' + heroEv.id + '"><img src="' + coverOf(heroEv) + '" alt="' + esc(heroEv.title) + '"><div class="ovl"></div><div class="cnt">'
+                    + '<span class="pill pill-live"><span class="dot g pulse"></span>' + (evLive(heroEv) ? 'Live Now' : 'On Sale') + ' \u00b7 ' + datePill(heroEv.startDate, heroEv.endDate) + '</span>'
+                    + '<h4>' + esc(heroEv.title) + '</h4><p>' + fmtN(heroRegs) + ' of ' + fmtN(heroEv.capacity) + ' delegates confirmed.</p></div></a>'
+                    + (london ? '<div class="hv-row"><span class="dot g pulse"></span><div><div class="t">LONDON SONIC ARENA</div><div class="s">The O2 Meridian Complex \u00b7 ' + fmtDate(london.startDate) + '</div></div><a class="btn btn-p" href="#/event/' + london.id + '">Claim VIP Pass</a></div>' : '') + '</div>'
+                    + '<div class="cine-floats"><div class="glass float-card"><span class="fc-ic" style="color:var(--green)">' + ic('users', 16) + '</span><div class="fc-t"><b class="tnum">' + fmtN(checkedInTotal) + '</b><span class="small mut">Checked-in on the live mesh</span></div></div>'
+                    + '<div class="glass float-card"><span class="fc-ic" style="color:var(--cyan2)">' + ic('ticket', 16) + '</span><div class="fc-t"><b class="tnum">' + fmtN(passVol) + '</b><span class="small mut">Passes issued on this node</span></div></div></div>'
+                    : '<div class="glass-hi stage-main cine-glass"><div class="empty"><b>No live events yet</b><p>Publish your first arena from the wizard.</p><a class="btn btn-p" href="#/register?role=organizer">Create Event</a></div></div>')
+                + '</div></div>'
+
+                // Scene 3 \u2014 LEFT: gate security
+                + '<div class="cine-scene right" id="cScene3"><div class="cine-box">'
+                + '<span class="cine-tag">03 / GATE SECURITY</span>'
+                + '<h2 class="cine-h2">Zero-paradigm<br>doorways.</h2>'
+                + '<p class="cine-line">Cryptographically sealed QR ciphers rotate every 15 seconds. Every pass is bound to one attendee, revocable in an instant.</p>'
+                + '<div class="cine-chips"><span class="pill pill-live"><span class="dot g pulse"></span>QR Rotation \u00b7 15s Cipher</span><span class="pill pill-vip">ECDSA \u00b7 256-bit</span><span class="pill pill-live">NFC VIP Lane</span></div>'
+                + '<div class="glass cine-glass cine-meters">'
+                + [['Gate throughput', '800+/min', 92, 'var(--green)'], ['Ingest latency', '0.14s avg', 24, 'var(--cyan2)'], ['Fraud blocked', '99.4%', 99, 'var(--vio2)']].map(m => '<div class="cm-row"><div class="cm-h"><span>' + m[0] + '</span><b class="tnum">' + m[1] + '</b></div><div class="cm-t"><i style="width:' + m[2] + '%;background:' + m[3] + '"></i></div></div>').join('')
+                + '</div>'
+                + '</div></div>'
+
+                // Scene 4 \u2014 RIGHT: live telemetry
+                + '<div class="cine-scene left" id="cScene4"><div class="cine-box">'
+                + '<span class="cine-tag">04 / SIGNAL</span>'
+                + '<h2 class="cine-h2">Every door,<br>on one screen.</h2>'
+                + '<div class="cine-kpis">'
+                + [[ic('activity', 16), fmtN(live * 4 + 12), 'Gates streaming', 'var(--green)'], [ic('users', 16), fmtN(checkedInTotal), 'Checked in today', 'var(--cyan2)'], [ic('dollar', 16), shortMoney(gmv), 'Settled volume', 'var(--vio2)'], [ic('globe', 16), '38', 'Countries served', 'var(--mag2)']].map(k => '<div class="glass-hi cine-kpi"><span class="ck-ic" style="color:' + k[3] + '">' + k[0] + '</span><b class="tnum">' + k[1] + '</b><span>' + k[2] + '</span></div>').join('')
+                + '</div></div></div>'
+
+                // Scene 5 \u2014 LEFT: verticals
+                + '<div class="cine-scene right" id="cScene5"><div class="cine-box">'
+                + '<span class="cine-tag">05 / SPHERES</span>'
+                + '<h2 class="cine-h2">Any room.<br>Any scale.</h2>'
+                + '<div class="cine-vgrid">'
+                + verticals.map(v => '<a class="glass cine-vchip" href="#/events?cat=' + v[0] + '"><span style="color:' + v[2] + '">' + ic(v[1], 17) + '</span><b>' + esc(catOf(v[0]).name) + '</b><span class="mut small">' + v[3] + '</span></a>').join('')
+                + '</div></div></div>'
+
+                // Scene 6 \u2014 RIGHT: testimonial
+                + '<div class="cine-scene left" id="cScene6"><div class="cine-box">'
+                + '<span class="cine-tag">06 / VOICES</span>'
+                + '<div class="glass-hi cine-glass cine-quote">'
+                + '<span class="cq-mark">\u201C</span>'
+                + '<p>' + esc(tsts[0][0]) + '</p>'
+                + '<div class="cq-by"><span class="cq-av">' + esc(tsts[0][1].slice(0, 1)) + '</span><div><b>' + esc(tsts[0][1]) + '</b><span class="mut small">' + esc(tsts[0][2]) + '</span></div></div>'
+                + '</div>'
+                + '<div class="cine-chips" style="margin-top:16px"><span class="pill pill-vip">' + ic('star', 12) + ' 4.9 / 5 producer rating</span></div>'
+                + '</div></div>'
+
+                // Scene 7 \u2014 center: final CTA, holds through the end of the scroll
+                + '<div class="cine-scene split" id="cScene7">'
+                + '<div class="cine-col">'
+                + '<span class="cine-tag">07 / YOUR MOVE</span>'
+                + '<h2 class="cine-h2">Let the doors<br>open.</h2>'
+                + '<p class="cine-line">Some events don\u2019t just happen. They get remembered. Build the one they talk about next year.</p>'
+                + '<div class="hero-cta"><a class="btn btn-p lg" href="#/events">' + ic('search', 16) + ' Explore Events</a><a class="btn btn-g lg" href="#/register?role=organizer">' + ic('spark', 16) + ' Register as Organizer</a></div>'
+                + '<div class="cine-assure">'
+                + [[ic('check', 13), 'No setup fees'], [ic('check', 13), 'Live in under an hour'], [ic('check', 13), 'Cancel anytime']].map(x => '<span>' + x[0] + ' ' + x[1] + '</span>').join('')
+                + '</div>'
+                + '<div class="cine-marks">'
+                + '<span class="cm-lbl">Trusted at</span>'
+                + ['Global Tech Summit', 'PULSE LIVE', 'Solara Xpanse', 'The O2 Meridian'].map(n => '<span class="cm-name">' + n + '</span>').join('')
+                + '</div>'
+                + '</div>'
+                + '<div class="cine-col side">'
+                + '<div class="glass-hi cine-next">'
+                + '<div class="cn-h"><span class="cine-tag" style="margin:0">Next doors opening</span><span class="pill pill-live"><span class="dot g pulse"></span>' + live + ' Live</span></div>'
+                + (active.length ? active.slice(0, 3).map(e => '<a class="cn-row" href="#/event/' + e.id + '">'
+                    + '<span class="cn-d"><b>' + new Date(e.startDate).getDate() + '</b><span>' + new Date(e.startDate).toLocaleString('en', { month: 'short' }).toUpperCase() + '</span></span>'
+                    + '<span class="cn-t"><b>' + esc(e.title) + '</b><span>' + ic('pin', 11) + ' ' + esc(e.city) + '</span></span>'
+                    + '<span class="cn-a">' + ic('arrR', 15) + '</span></a>').join('')
+                    : '<p class="cine-line" style="margin:0">No open doors right now.</p>')
+                + '<a class="cn-all" href="#/events">View every arena ' + ic('arrR', 13) + '</a>'
+                + '</div>'
+                + '<div class="cine-mini">'
+                + [[fmtN(passVol), 'Passes issued'], [fmtN(checkedInTotal), 'Checked in'], ['38', 'Countries']].map(k => '<div class="glass cmi"><b class="tnum">' + k[0] + '</b><span>' + k[1] + '</span></div>').join('')
+                + '</div>'
+                + '</div>'
+                + '</div>'
+                + '</div></section>';
+            return (db.meta.maintenance ? '<div class="banner">' + ic('warn', 13) + ' Scheduled mesh maintenance window \u2014 ticketing remains fully operational.</div>' : '')
+                + topNav('home')
+                + (isDesktopHero ? cineHero : staticHero)
                 + (mq.length ? '<div class="wrap"><div class="marq"><div class="marq-in">' + mqSetHTML(mq) + mqSetHTML(mq) + '</div></div></div>' : '')
-                + '</section>'
                 + '<section class="land-sec wrap" id="verticals"><div class="sec-h"><span class="eyebrow">' + ic('globe', 13) + ' Curated Spheres</span><h2>Explore Premium Verticals</h2><p>From main-stage stadium festivals to confidential executive conclaves, tailor your arena.</p></div>'
                 + '<div class="vgrid">' + verticals.map(v => '<a class="glass vcard" href="#/events?cat=' + v[0] + '"><span class="vt" style="color:' + v[2] + ';background:' + v[2] + '14;border-color:' + v[2] + '55">' + ic(v[1], 19) + '</span><b>' + esc(catOf(v[0]).name) + '</b><span>' + v[3] + '</span></a>').join('') + '</div></section>'
                 + '<section class="land-sec wrap" style="padding-top:10px"><div class="sec-h row"><div><span class="eyebrow">' + ic('cal', 13) + ' Prime Chronology</span><h2>Featured & Upcoming Summits</h2></div>'
@@ -755,7 +1016,7 @@
                 + '<h2>Ready to Orchestrate at the Highest Tier of Production?</h2>'
                 + '<p>Get integrated with Eventora OS in minutes. Access invitation-only gate telemetry, dynamic capacity escalation, and our curated production partner directory.</p>'
                 + '<div id="cta-zone"><form data-form="request-access"><div class="cta-form"><input class="inp" id="cta-email" type="email" placeholder="Enter access email address\u2026" required><button class="btn btn-p" type="submit">Request Access</button></div></form>'
-                + '<p class="small mut" style="margin-top:12px">' + ic('lock', 12) + ' No lock-in contracts \u00b7 SOC 2 Type II Compliant</p></div></div></section>'
+                + '<p class="small mut" style="margin-top:12px">' + ic('lock', 12) + ' No lock-in contracts</p></div></div></section>'
                 + publicFooter();
         }
         function ExploreView(q) {
@@ -860,7 +1121,7 @@
                 + '<p class="mut" style="line-height:1.8">Interfaces are not flat planes; they are illuminated multi-layered optical lenses suspended over deep spatial fields. Specular light leaks, refractive edge highlights and crisp geometric legibility keep high information density effortless to scan. We believe production software should feel like the production itself.</p></div>'
                 + '<div class="glass" style="padding:26px"><span class="eyebrow">' + ic('shield', 13) + ' Trust & Compliance</span>'
                 + '<h3 style="font-size:20px;margin:12px 0 10px">Zero-Trust by Default</h3>'
-                + '<p class="mut" style="line-height:1.8">Every pass is sealed with rotating 256-bit ECDSA ciphers. Biometric templates never leave the venue edge node. Settlement runs on transparent T+0 to T+2 windows with automated dispute buffers, settled in ' + CUR + ' BDT. ISO 27001 certified \u00b7 SOC 2 Type II compliant.</p></div></div>'
+                + '<p class="mut" style="line-height:1.8">Every pass is sealed with rotating 256-bit ECDSA ciphers. Biometric templates never leave the venue edge node. Settlement runs on transparent T+0 to T+2 windows with automated dispute buffers, settled in ' + CUR + ' BDT.</p></div></div>'
                 + '<div class="glass" style="padding:26px"><span class="eyebrow">' + ic('layers', 13) + ' The Stack</span>'
                 + '<div class="grid3 mt24">'
                 + [['zap', 'Curation Engine', 'Multi-tier arenas, gated VIP zones and collision-free seating.'], ['qr', 'Glass Ticketing', 'Rotating QR, NFC encircle passes and instant revocation.'], ['radio', 'Gate Telemetry', '800+ admissions/min, live congestion triage, zero-latency RFID.']].map(f => '<div><span style="width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(99,102,241,.14);border:1px solid rgba(99,102,241,.35);color:#a5b4fc;margin-bottom:14px">' + ic(f[0], 20) + '</span><b style="font:700 15px var(--fd)">' + f[1] + '</b><p class="small mut mt8">' + f[2] + '</p></div>').join('')
@@ -874,7 +1135,7 @@
                 + '<div class="glass" style="padding:26px">'
                 + '<form data-form="contact">'
                 + '<div class="grid2"><div class="field"><label>Your Name</label><input class="inp" name="name" required placeholder="Ayaan Rahman"></div>'
-                + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" required placeholder="you@arena.io"></div></div>'
+                + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" required placeholder="you@example.com"></div></div>'
                 + '<div class="field"><label>Subject</label><select class="inp" name="topic"><option>Enterprise sales</option><option>Organizer support</option><option>Attendee support</option><option>Press & partnerships</option></select></div>'
                 + '<div class="field"><label>Message</label><textarea class="inp" name="msg" required placeholder="Tell us about your arena\u2026"></textarea></div>'
                 + '<button class="btn btn-p lg" type="submit">' + ic('send', 15) + ' Send Message</button>'
@@ -898,7 +1159,7 @@
                 ['For Organizers', [['How do I create an event?', 'Sign in with an Organizer account and open Create Event. The 5-step wizard covers basics, branding, dates & venue, tiered pricing in the currency you choose (including free tiers), run-of-show and speakers \u2014 then publish to the live mesh. Everything autosaves as a draft.'], ['How is revenue calculated?', 'Every paid order records unit price, quantity, platform fee and total in the event\u2019s own listed currency. Dashboard and Analytics chart settled revenue per day and per event directly from the order ledger; free RSVPs add 0 but count toward attendance.'], ['Can I manage check-ins at the gate?', 'Yes \u2014 the Attendee Directory supports live search, manual check-in with gate assignment, RFID lanyard toggles, tier reassignment, refunds and a full CSV manifest export.'], ['What analytics do I get?', 'Registrations and revenue trends over time, per-event performance, tier mix, attendee distribution across categories, portfolio phase split (upcoming / live / completed) and conversion against listed capacity.']]]
             ];
             return topNav('')
-                + '<div class="wrap phead"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Help & FAQ</span></div>'
+                + '<div class="wrap phead" style="max-width:900px;margin:0 auto"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Help & FAQ</span></div>'
                 + '<span class="eyebrow" style="margin-top:12px">' + ic('help', 13) + ' Support Center</span><h1>Help & Frequently Asked Questions</h1>'
                 + '<p class="sub">Everything about ticketing, payments and security on the Eventora mesh. Still stuck? <a href="#/contact" style="color:var(--cyan2)">Contact the team</a>.</p></div>'
                 + '<div class="wrap" style="padding-bottom:50px;max-width:900px">'
@@ -911,7 +1172,7 @@
         }
         function PrivacyView() {
             return topNav('')
-                + '<div class="wrap phead"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Privacy Policy</span></div>'
+                + '<div class="wrap phead" style="max-width:860px;margin:0 auto"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Privacy Policy</span></div>'
                 + '<span class="eyebrow" style="margin-top:12px">' + ic('shield', 13) + ' Legal</span><h1>Privacy Policy</h1>'
                 + '<p class="sub">How Eventora collects, uses and protects information across the mesh.</p></div>'
                 + '<div class="wrap policy" style="padding-bottom:50px;max-width:860px">'
@@ -937,7 +1198,7 @@
         }
         function TermsView() {
             return topNav('')
-                + '<div class="wrap phead"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Terms & Conditions</span></div>'
+                + '<div class="wrap phead" style="max-width:860px;margin:0 auto"><div class="crumb"><a href="#/">Home</a>' + ic('chevR', 12) + ' <span>Terms & Conditions</span></div>'
                 + '<span class="eyebrow" style="margin-top:12px">' + ic('brief', 13) + ' Legal</span><h1>Terms & Conditions</h1>'
                 + '<p class="sub">The rules of the arena \u2014 for attendees, organizers and the platform.</p></div>'
                 + '<div class="wrap policy" style="padding-bottom:50px;max-width:860px">'
@@ -969,7 +1230,7 @@
             return topNav('') + '<div class="wrap" style="padding:80px 0;max-width:420px;margin:0 auto">'
                 + '<div class="glass" style="padding:28px"><h2 style="margin-bottom:8px">Reset your password</h2>'
                 + '<p class="mut" style="margin-bottom:18px">Enter the email on your account and we\u2019ll send you a reset link.</p>'
-                + '<form data-form="forgotpw" novalidate><div class="field"><label>Email</label><input class="inp" name="email" type="email" placeholder="you@arena.io" required></div>'
+                + '<form data-form="forgotpw" novalidate><div class="field"><label>Email</label><input class="inp" name="email" type="email" placeholder="you@example.com" required></div>'
                 + '<div class="err-t" id="fp-err" style="margin-bottom:10px"></div>'
                 + '<button class="btn btn-p w100 lg" type="submit">' + ic('mail', 15) + ' Send Reset Link</button></form>'
                 + '<div style="margin-top:16px;text-align:center"><a href="#/login" class="small mut">Back to Sign In</a></div></div></div>' + publicFooter();
@@ -998,19 +1259,19 @@
                 + '<div class="gwrap" id="gbtn"></div>'
                 + '<div class="or-div">or use email</div>'
                 + (tab === 'login' ? '<form data-form="login" data-next="' + esc(next) + '" novalidate>'
-                    + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" id="li-email" placeholder="you@arena.io" required></div>'
+                    + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" id="li-email" placeholder="you@example.com" required></div>'
                     + '<div class="field"><label>Password <a href="#/forgot-password" class="small" style="font-weight:600">Forgot password?</a></label><div class="pwrap"><input class="inp" name="pass" type="password" id="li-pass" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" required><button type="button" class="pw-eye" data-action="pw-toggle" data-target="li-pass">' + ic('eye', 15) + '</button></div></div>'
                     + '<div class="err-t" id="auth-err" style="margin-bottom:10px"></div>'
                     + '<button class="btn btn-p w100 lg" type="submit">' + ic('zap', 15) + ' Access Console</button></form>'
                     : '<form data-form="register" novalidate>'
                     + '<div class="field"><label>Full Name</label><input class="inp" name="name" placeholder="Ayaan Rahman" required></div>'
-                    + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" placeholder="you@arena.io" required></div>'
+                    + '<div class="field"><label>Email</label><input class="inp" name="email" type="email" placeholder="you@example.com" required></div>'
                     + '<div class="field"><label>Password <span class="mut" style="font-weight:500">8+ chars, upper, lower, number & symbol</span></label><div class="pwrap"><input class="inp" name="pass" type="password" id="reg-pass" minlength="8" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" required><button type="button" class="pw-eye" data-action="pw-toggle" data-target="reg-pass">' + ic('eye', 15) + '</button></div></div>'
                     + '<div class="field"><label>I am joining as</label><div class="role-seg">'
                     + '<button type="button" class="chip-f ' + (preRole === 'organizer' ? '' : 'act') + '" data-action="reg-role" data-r="attendee">' + ic('user', 13) + ' Attendee</button>'
                     + '<button type="button" class="chip-f ' + (preRole === 'organizer' ? 'act' : '') + '" data-action="reg-role" data-r="organizer">' + ic('brief', 13) + ' Organizer</button></div>'
                     + '<input type="hidden" name="role" id="reg-role" value="' + preRole + '"></div>'
-                    + '<div class="field" id="org-field" style="display:' + (preRole === 'organizer' ? 'block' : 'none') + '"><label>Organization / Production House</label><input class="inp" name="org" placeholder="Nexus Live Productions"></div>'
+                    + '<div class="field" id="org-field" style="display:' + (preRole === 'organizer' ? 'block' : 'none') + '"><label>Organization / Production House</label><input class="inp" name="org" placeholder="Skyline Events Co."></div>'
                     + '<div class="err-t" id="auth-err" style="margin-bottom:10px"></div>'
                     + '<button class="btn btn-p w100 lg" type="submit">' + ic('spark', 15) + ' Create Account</button></form>')
                 + '</div></div>';
@@ -1030,7 +1291,9 @@
             const c = catOf(ev.category);
             return topNav('events')
                 + '<div class="wrap phead"><span class="eyebrow">' + ic('ticket', 13) + ' Registration \u00b7 ' + esc(c.name) + '</span><h1>' + (priceFrom(ev) === 0 ? 'RSVP \u2014 Free' : 'Claim Your Pass') + '</h1>'
-                + '<p class="sub">' + esc(ev.title) + ' \u00b7 ' + fmtRange(ev.startDate, ev.endDate) + ' \u00b7 ' + esc(ev.venue) + '</p></div>'
+                + '<p class="sub">' + esc(ev.title) + ' \u00b7 ' + fmtRange(ev.startDate, ev.endDate) + ' \u00b7 ' + esc(ev.venue) + '</p>'
+                + '<div class="co-steps">' + ['Tier', 'Quantity', 'Details', priceFrom(ev) === 0 ? 'Confirm' : 'Payment'].map((s, i) => '<span class="co-step"><b>' + (i + 1) + '</b>' + s + '</span>').join('<i></i>') + '</div>'
+                + '</div>'
                 + '<div class="wrap co-grid"><div><div class="glass" style="padding:22px">'
                 + '<h3 style="font-size:16px;margin-bottom:16px">1 \u00b7 Select Tier</h3>'
                 + tiers.map(t => {
@@ -1047,7 +1310,7 @@
                 + '<div class="field"><label>Full Name</label><input class="inp" name="name" value="' + esc(u.name) + '" required></div>'
                 + '<div class="field"><label>Email (pass delivery)</label><input class="inp" name="email" type="email" value="' + esc(u.email) + '" required></div></div>'
                 + (priceFrom(ev) > 0 ? '<label class="f-label">4 \u00b7 Payment Method (' + evCur(ev) + ')</label><div class="paysel" style="margin-bottom:14px">'
-                    + payMethodsFor(evCur(ev)).map(m => '<div class="paycard ' + (CO.pay === m[0] ? 'act' : '') + '" data-action="co-pay" data-p="' + m[0] + '"><span class="pd" style="background:' + m[2] + ';box-shadow:0 0 8px ' + m[2] + '66"></span>' + m[1] + '</div>').join('')
+                    + payMethodsFor(evCur(ev)).map(m => '<div class="paycard ' + (CO.pay === m[0] ? 'act' : '') + '" data-action="co-pay" data-p="' + m[0] + '"><span class="pd pd-logo">' + payLogoSVG(m[0]) + '</span><div class="pd-t"><b>' + m[1] + '</b><span>' + m[4] + '</span></div><span class="pd-ck">' + ic('checkc', 16) + '</span></div>').join('')
                     + '</div>' + (!CONFIG.payments.createSessionUrl ? '<div class="gcfg" style="margin-top:6px"><b>Online payment gateway is not connected yet.</b><br>Paid checkout requires a real provider session \u2014 no simulated transactions are ever created. Configure <code>window.EVENTORA_CONFIG.payments</code> with your gateway\u2019s <code>createSessionUrl</code> and <code>verifyUrl</code>. Attendees anywhere in the world can pay by card (or PayPal); Bangladesh-priced (BDT) events also offer bKash / Nagad / Rocket. Secrets stay server-side. Free 0-amount RSVPs check out instantly without a gateway.</div>' : '') : '')
                 + '<div class="err-t" id="co-err"></div></form></div></div>'
                 + '<div><div class="glass side-card" style="position:static"><span class="eyebrow" style="margin-bottom:14px">' + ic('card', 13) + ' Order Summary</span>'
@@ -1120,7 +1383,14 @@
                 body: JSON.stringify({
                     ref, amount: tot, currency: code, method: CO.pay, gateway: CONFIG.payments.gatewayName || 'auto',
                     description: ev.title + ' \u2014 ' + t.name + ' \u00d7 ' + CO.qty, customer: { name, email },
-                    callbackUrl: location.origin + location.pathname + '#/payment/callback'
+                    /* SSLCommerz (and most gateways) redirect to a distinct URL per outcome rather
+                       than one shared callback \u2014 send all three so the backend can pass them
+                       straight through as success_url/fail_url/cancel_url. callbackUrl is kept for
+                       backends still built against the single-URL shape. */
+                    callbackUrl: paymentReturnUrl(),
+                    successUrl: paymentReturnUrl('success'),
+                    failUrl: paymentReturnUrl('fail'),
+                    cancelUrl: paymentReturnUrl('cancel')
                 })
             })
                 .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, status: r.status, j })))
@@ -1154,6 +1424,11 @@
             notify(ev.organizerId, 'New ' + t.name + ' sale \u2014 ' + ev.title, (u ? u.name : 'Attendee') + ' \u00b7 ' + fmtMoney(order.total), 'sale', '#/organizer/attendees?event=' + ev.id);
             persist(); return { state: 'paid', regId: first.id };
         }
+        /* One callback URL per outcome, so the gateway's own redirect always carries the
+           right status \u2014 we don't have to guess it from whatever the provider appends. */
+        function paymentReturnUrl(status) {
+            return location.origin + location.pathname + '#/payment/callback' + (status ? '?status=' + status : '');
+        }
         function PaymentCallbackView(q) {
             const ref = q.get('ref') || '', provStatus = (q.get('status') || '').toLowerCase(), txn = q.get('txn') || q.get('transactionId') || '';
             after(() => {
@@ -1164,7 +1439,7 @@
                 if (order.status === 'refunded' || order.status === 'failed' || order.status === 'cancelled') { renderPayResult(host, order, order.status, order.registrationId); return }
                 if (!CONFIG.payments.verifyUrl) {
                     host.innerHTML = '<div class="glass" style="max-width:560px;margin:60px auto;padding:30px;text-align:center">' + payPill(order.status)
-                        + '<h2 style="margin:14px 0 8px">Verification endpoint not configured</h2><p class="mut">The gateway returned reference <span class="mono" style="color:#7dd3fc">' + esc(ref) + '</span>. Set <code>EVENTORA_CONFIG.payments.verifyUrl</code> so this transaction can be verified server-side before any ticket is issued. The order remains <b>Pending</b> \u2014 no ticket has been generated.</p><a class="btn btn-p mt16" href="#/profile">Open Billing & Orders</a></div>';
+                        + '<h2 style="margin:14px 0 8px">Verification endpoint not configured</h2><p class="mut">The gateway returned reference <span class="mono" style="color:#7dd3fc">' + esc(ref) + '</span>. Set <code>EVENTORA_CONFIG.payments.verifyUrl</code> so this transaction can be verified server-side before any ticket is issued. The order remains <b>Pending</b> \u2014 no ticket has been generated.</p><a class="btn btn-p mt16" href="#/billing">Open Billing & Orders</a></div>';
                     return;
                 }
                 host.innerHTML = '<div class="glass" style="max-width:520px;margin:70px auto;padding:40px;text-align:center"><span class="spin" style="width:26px;height:26px;border-width:3px;margin:0 auto 18px;display:block"></span><h2 style="font-size:19px">Verifying your payment\u2026</h2><p class="mut" style="margin-top:8px">Confirming the transaction with the provider before issuing your pass. Reference <span class="mono" style="color:#7dd3fc">' + esc(ref) + '</span></p></div>';
@@ -1176,32 +1451,58 @@
                     })
                     .catch(() => {
                         host.innerHTML = '<div class="glass" style="max-width:560px;margin:60px auto;padding:30px;text-align:center">' + payPill(order.status)
-                            + '<h2 style="margin:14px 0 8px">Verification unavailable</h2><p class="mut">We couldn\u2019t reach the verification service, so your order stays <b>Pending</b> \u2014 nothing was fulfilled and no ticket was issued. Try again from Billing & Orders in a moment.</p><a class="btn btn-p mt16" href="#/profile">Open Billing & Orders</a></div>';
+                            + '<h2 style="margin:14px 0 8px">Verification unavailable</h2><p class="mut">We couldn\u2019t reach the verification service, so your order stays <b>Pending</b> \u2014 nothing was fulfilled and no ticket was issued. Try again from Billing & Orders in a moment.</p><a class="btn btn-p mt16" href="#/billing">Open Billing & Orders</a></div>';
                     });
             });
             return topNav('') + '<div class="wrap" style="min-height:50vh"><div id="payres"></div></div>' + (session() ? consoleFooter() : publicFooter());
         }
         function renderPayResult(host, order, state, regId) {
             const ev = db.events.find(e => e.id === order.eventId);
-            const title = state === 'paid' ? 'Payment verified \u2014 you\u2019re in!' : state === 'ended' ? 'Event Ended \u2014 full refund due' : state === 'cancelled' ? 'Payment cancelled' : state === 'soldout' ? 'Tickets sold out' : 'Payment failed';
+            const title = state === 'paid' ? 'Payment verified \u2014 you\u2019re in!' : state === 'ended' ? 'Event Ended \u2014 full refund due' : state === 'cancelled' ? 'You cancelled the payment' : state === 'soldout' ? 'Tickets sold out' : 'Payment failed';
             const body = state === 'paid' ? 'Your payment of ' + fmtMoney(order.total) + ' was verified with the provider and your pass' + (order.quantity > 1 ? 'es are' : ' is') + ' ready.'
                 : state === 'ended' ? 'This event finished before fulfilment. Your payment of ' + fmtMoney(order.total) + ' will be refunded in full by the merchant \u2014 no ticket was issued.'
-                    : state === 'cancelled' ? 'No charge was made and no ticket was issued. You can retry any time while tickets remain.'
+                    : state === 'cancelled' ? 'You closed the payment window before it completed \u2014 no charge was made and no ticket was issued. You can retry any time while tickets remain.'
                         : state === 'soldout' ? 'Your payment will be refunded in full \u2014 the tier sold out before fulfilment. No ticket was issued.'
                             : 'The provider declined or could not process the transaction. No charge was completed and no ticket was issued.';
             const ring = state === 'paid' ? '' : state === 'cancelled' || state === 'ended' ? 'amb' : 'red';
-            const icon = state === 'paid' ? 'check' : 'ban';
+            const icon = state === 'paid' ? 'check' : state === 'cancelled' ? 'x' : 'ban';
+            const u = session(), dashHref = u ? ROLE_HOME[u.role] : '#/events';
             const actions = state === 'paid' ? '<button class="btn btn-p" data-go="#/success/' + regId + '">' + ic('ticket', 14) + ' View My Pass</button><a class="btn btn-g" href="#/attendee/tickets">My Tickets</a>'
-                : state === 'ended' ? '<a class="btn btn-g" href="#/events">Browse Events</a><button class="btn btn-g" data-go="#/profile">Billing & Orders</button>'
-                    : '<a class="btn btn-p" href="#/checkout/' + order.eventId + '?tier=' + (order.tierId || '') + '">' + ic('refresh', 14) + ' Try Again</a><button class="btn btn-g" data-go="#/profile">Billing & Orders</button>';
+                : state === 'ended' ? '<a class="btn btn-g" href="#/events">Browse Events</a><button class="btn btn-g" data-go="#/billing">Billing & Orders</button><a class="btn btn-g" href="' + dashHref + '">' + ic('grid', 14) + ' Back to Dashboard</a>'
+                    : '<a class="btn btn-p" href="#/checkout/' + order.eventId + '?tier=' + (order.tierId || '') + '">' + ic('refresh', 14) + ' Try Again</a><button class="btn btn-g" data-go="#/billing">Billing & Orders</button><a class="btn btn-g" href="' + dashHref + '">' + ic('grid', 14) + ' Back to Dashboard</a>';
+            /* Cancelled checkouts get a brief, realistic "hang on this screen, then bounce back"
+               beat \u2014 like most real payment gateways \u2014 instead of just parking the attendee
+               on a dead-end result page. Auto-redirect is cancellable and pushed through the
+               shared `timers` array so it's automatically cleared if the user navigates away
+               before it fires. */
+            const dashLabel = u ? 'your dashboard' : 'Browse Events';
+            const redirectNote = state === 'cancelled' ? '<div class="pay-redirect" id="pay-redirect">'
+                + '<div class="pay-redirect-bar"><div class="pay-redirect-fill" id="pay-redirect-fill"></div></div>'
+                + '<p class="small mut" id="pay-redirect-txt">Taking you back to ' + esc(dashLabel) + ' in <b id="pay-redirect-s">6</b>s\u2026</p>'
+                + '<button type="button" class="btn btn-g sm" id="pay-redirect-stop">' + ic('x', 13) + ' Stay on this page</button>'
+                + '</div>' : '';
             host.innerHTML = '<div class="glass" style="max-width:560px;margin:60px auto;padding:34px;text-align:center">'
                 + '<div class="okring ' + ring + '">' + ic(icon, 34, 2.4) + '</div>'
                 + '<h1 style="font-size:clamp(22px,4vw,28px);letter-spacing:-.02em">' + title + '</h1>'
                 + '<p class="mut" style="margin:10px 0 6px">' + body + '</p>'
                 + (ev ? '<p class="small mut" style="margin-bottom:6px">' + esc(ev.title) + ' \u00b7 ' + esc(order.tierName || '') + ' \u00d7 ' + order.quantity + '</p>' : '')
                 + '<p class="small mut" style="margin-bottom:20px">Order ' + payPill(order.status) + (order.txnId ? ' \u00b7 Txn <span class="mono" style="color:#7dd3fc">' + esc(order.txnId) + '</span>' : '') + ' \u00b7 ' + fmtMoney(order.total) + '</p>'
-                + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' + actions + '</div></div>';
+                + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' + actions + '</div>'
+                + redirectNote + '</div>';
             document.title = 'Payment ' + (state === 'paid' ? 'Successful' : state.charAt(0).toUpperCase() + state.slice(1)) + ' \u2014 Eventora';
+            if (state === 'cancelled') {
+                let secs = 6;
+                const fill = document.getElementById('pay-redirect-fill'), sEl = document.getElementById('pay-redirect-s'), note = document.getElementById('pay-redirect'), stopBtn = document.getElementById('pay-redirect-stop');
+                if (fill) fill.style.transitionDuration = (secs) + 's';
+                requestAnimationFrame(() => { if (fill) fill.style.width = '0%' });
+                const iv = setInterval(() => {
+                    secs -= 1;
+                    if (sEl) sEl.textContent = String(Math.max(secs, 0));
+                    if (secs <= 0) { clearInterval(iv); location.hash = dashHref }
+                }, 1000);
+                timers.push(iv);
+                if (stopBtn) stopBtn.addEventListener('click', () => { clearInterval(iv); if (note) note.remove() });
+            }
         }
         function SuccessView(regId) {
             const u = session(); if (!u) return guardLogin();
@@ -1258,7 +1559,7 @@
             const spendSeries = dailySeries(90, k => myOrders.filter(o => o.created_at.slice(0, 10) === k).reduce((s, o) => s + o.total, 0));
             const attSegs = eventPhaseMix(db.events.filter(e => myIds.indexOf(e.id) >= 0));
             return topNav('adash')
-                + '<div class="wrap phead"><div class="row-b"><div><span class="eyebrow">' + ic('ticket', 13) + ' Attendee Console</span>'
+                + '<div class="wrap phead"><div class="row-b"><div style="min-width:240px;flex:1 1 240px"><span class="eyebrow">' + ic('ticket', 13) + ' Attendee Console</span>'
                 + '<h1>Welcome back, ' + esc(u.name.split(' ')[0]) + '</h1>'
                 + '<p class="sub">Your sealed passes, wishlist and alerts \u2014 synced to the gate mesh in real time.</p></div>'
                 + '<a class="btn btn-p" href="#/attendee/browse">' + ic('search', 15) + ' Browse Events</a></div></div>'
@@ -1285,7 +1586,7 @@
                 }).join('')
                     : emptyState('ticket', 'No upcoming passes', 'Browse the mesh and claim your first sealed pass.', '#/attendee/browse', 'Browse Events')) + '</div>'
                 + '<div class="glass" style="padding:22px"><h3 style="font-size:16px" class="mb16">Quick Links</h3>'
-                + [['cal', 'My Registrations', '#/attendee/registrations'], ['ticket', 'My Tickets', '#/attendee/tickets'], ['heart', 'Wishlist', '#/attendee/wishlist'], ['bell', 'Notifications (' + unreadCount() + ' unread)', '#/notifications'], ['user', 'Profile & Settings', '#/profile']].map(l => '<a class="dd-it" href="' + l[2] + '" style="margin-bottom:4px">' + ic(l[0], 15) + ' ' + l[1] + '</a>').join('') + '</div></div>'
+                + [['cal', 'My Registrations', '#/attendee/registrations'], ['ticket', 'My Tickets', '#/attendee/tickets'], ['heart', 'Wishlist', '#/attendee/wishlist'], ['card', 'Billing & Orders', '#/billing'], ['bell', 'Notifications (' + unreadCount() + ' unread)', '#/notifications'], ['user', 'Profile & Settings', '#/profile']].map(l => '<a class="dd-it" href="' + l[2] + '" style="margin-bottom:4px">' + ic(l[0], 15) + ' ' + l[1] + '</a>').join('') + '</div></div>'
                 + '<h3 style="font-size:16px" class="mb16">Continue Exploring</h3>'
                 + '<div class="ev-grid cols3">' + recs.map(eventCard).join('') + '</div>'
                 + '</div>' + consoleFooter();
@@ -1342,7 +1643,7 @@
             const list = NF === 'unread' ? all.filter(n => !n.read) : all;
             const ti = { ticket: ['ticket', 'var(--green)', 'rgba(52,211,153,.12)'], sale: ['dollar', 'var(--cyan2)', 'rgba(6,182,212,.12)'], alert: ['warn', 'var(--amber)', 'rgba(251,191,36,.1)'], system: ['info', '#a5b4fc', 'rgba(99,102,241,.12)'] };
             return topNav('')
-                + '<div class="wrap phead"><div class="row-b"><div><span class="eyebrow">' + ic('bell', 13) + ' Signal Feed</span><h1>Notifications</h1></div>'
+                + '<div class="wrap phead"><div class="row-b"><div style="min-width:180px;flex:1 1 180px"><span class="eyebrow">' + ic('bell', 13) + ' Signal Feed</span><h1>Notifications</h1></div>'
                 + '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-g sm" data-action="notif-all">' + ic('check', 14) + ' Mark all read</button>'
                 + '<button class="btn btn-danger sm" data-action="notif-clear">' + ic('trash', 14) + ' Clear all</button></div></div>'
                 + '<div class="tabs"><button class="' + (NF === 'all' ? 'act' : '') + '" data-action="nf-tab" data-t="all">All (' + all.length + ')</button><button class="' + (NF === 'unread' ? 'act' : '') + '" data-action="nf-tab" data-t="unread">Unread (' + all.filter(n => !n.read).length + ')</button></div></div>'
@@ -1356,11 +1657,34 @@
                     : emptyState('bell', 'All clear', 'No notifications in this filter right now.', '#/events', 'Browse Events'))
                 + '</div>' + consoleFooter();
         }
-        function ProfileView() {
+        function BillingView() {
             const u = session(); if (!u) return guardLogin();
             const myOrders = db.orders.filter(o => o.userId === u.id).sort((a, b) => b.created_at.localeCompare(a.created_at));
             return topNav('')
-                + '<div class="wrap phead"><span class="eyebrow">' + ic('user', 13) + ' Account Core</span><h1>Profile & Settings</h1></div>'
+                + '<div class="wrap phead"><div class="crumb"><a href="#/profile">Profile & Settings</a>' + ic('chevR', 12) + ' <span>Billing & Orders</span></div>'
+                + '<span class="eyebrow" style="margin-top:12px">' + ic('card', 13) + ' Payment History</span><h1>Billing & Orders</h1>'
+                + '<p class="sub">Every order placed on your account, its settlement status, and quick actions for anything still pending.</p></div>'
+                + '<div class="wrap" style="padding-bottom:40px">'
+                + (myOrders.length ? '<div class="glass tablewrap"><table class="dtable"><thead><tr><th>Event</th><th>Method</th><th>Placed</th><th>Total</th><th>Status</th><th></th></tr></thead>'
+                    + '<tbody>' + myOrders.map(o => {
+                        const ev = db.events.find(e => e.id === o.eventId);
+                        return '<tr><td><div class="att">' + (ev ? '<img class="avatar" style="width:44px;height:32px;border-radius:6px" src="' + coverOf(ev) + '" alt="">' : '<span class="avatar avx" style="width:44px;height:32px;border-radius:6px;font-size:11px">\u2014</span>') + '<div><div class="nm">' + esc(ev ? ev.title : 'Event unavailable') + '</div><div class="em">' + (o.txnId ? 'Txn ' + truncHash(o.txnId) : 'Ref ' + truncHash(o.id)) + '</div></div></div></td>'
+                            + '<td>' + methodLabel(o.method) + '</td>'
+                            + '<td class="mut">' + fmtDate(o.created_at.slice(0, 10)) + '</td>'
+                            + '<td class="tnum" style="font-weight:600">' + (o.total === 0 ? 'Free' : fmtMoney(o.total, o.currency)) + '</td>'
+                            + '<td>' + payPill(o.status) + '</td>'
+                            + '<td style="text-align:right"><div style="display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">'
+                            + (o.status === 'pending' ? '<button class="btn btn-p sm" data-action="pay-resume" data-id="' + o.id + '">Resume</button><button class="btn btn-g sm" data-action="pay-cancel" data-id="' + o.id + '">Cancel</button>' : '')
+                            + (o.status === 'paid' && o.registrationId ? '<button class="btn btn-g sm" data-action="tkt-qr" data-id="' + o.registrationId + '">' + ic('qr', 13) + ' Pass</button>' : '')
+                            + '</div></td></tr>'
+                    }).join('') + '</tbody></table></div>'
+                    : emptyState('card', 'No orders yet', 'Your payment history and receipts will appear here once you register for an event.', '#/attendee/browse', 'Browse Events'))
+                + '</div>' + consoleFooter();
+        }
+        function ProfileView(q) {
+            const u = session(); if (!u) return guardLogin();
+            return topNav('')
+                + '<div class="wrap phead" style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap"><div><span class="eyebrow">' + ic('user', 13) + ' Account Core</span><h1>Profile & Settings</h1></div><a class="btn btn-g" href="' + ROLE_HOME[u.role] + '">' + ic('grid', 15) + ' Back to Dashboard</a></div>'
                 + '<div class="wrap grid2" style="padding-bottom:50px;align-items:start">'
                 + '<div class="glass" style="padding:26px">'
                 + '<div style="display:flex;gap:16px;align-items:center;margin-bottom:22px;flex-wrap:wrap">'
@@ -1377,17 +1701,6 @@
                 + (u.role === 'organizer' ? '<div class="field"><label>Organization</label><input class="inp" name="org" value="' + esc(u.org || '') + '"></div>' : '')
                 + '<button class="btn btn-p" type="submit">' + ic('check', 15) + ' Save Profile</button></form></div>'
                 + '<div style="display:flex;flex-direction:column;gap:20px">'
-                + '<div class="glass" style="padding:22px"><h3 style="font-size:15px;margin-bottom:12px">Billing & Orders</h3>'
-                + (myOrders.length ? '<div style="display:flex;flex-direction:column">' + myOrders.slice(0, 8).map(o => {
-                    const ev = db.events.find(e => e.id === o.eventId);
-                    return '<div class="row-b" style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)"><div style="min-width:0"><b style="font:600 13px var(--fd);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + esc(ev ? ev.title : '\u2014') + '</b>'
-                        + '<div class="small mut">' + fmtMoney(o.total, o.currency) + ' \u00b7 ' + methodLabel(o.method) + (o.txnId ? ' \u00b7 Txn ' + truncHash(o.txnId) : '') + '</div></div>'
-                        + '<div style="display:flex;gap:8px;align-items:center">' + payPill(o.status)
-                        + (o.status === 'pending' ? '<button class="btn btn-p sm" data-action="pay-resume" data-id="' + o.id + '">Resume</button><button class="btn btn-g sm" data-action="pay-cancel" data-id="' + o.id + '">Cancel</button>' : '')
-                        + (o.status === 'paid' && o.registrationId ? '<button class="btn btn-g sm" data-action="tkt-qr" data-id="' + o.registrationId + '">' + ic('qr', 13) + '</button>' : '')
-                        + '</div></div>'
-                }).join('') + '</div>' : '<p class="small mut">No orders yet \u2014 your payment history will appear here.</p>')
-                + '</div>'
                 + (u.pw ? '<div class="glass" style="padding:22px"><h3 style="font-size:15px;margin-bottom:16px">Security</h3>'
                     + '<form data-form="password"><div class="field"><label>Current Password</label><div class="pwrap"><input class="inp" name="cur" type="password" id="pw-cur" required><button type="button" class="pw-eye" data-action="pw-toggle" data-target="pw-cur">' + ic('eye', 15) + '</button></div></div>'
                     + '<div class="field"><label>New Password</label><div class="pwrap"><input class="inp" name="nw" type="password" id="pw-nw" minlength="8" required><button type="button" class="pw-eye" data-action="pw-toggle" data-target="pw-nw">' + ic('eye', 15) + '</button></div></div>'
@@ -1417,8 +1730,8 @@
             const top = [...evs].sort((a, b) => evRevenue(b.id) - evRevenue(a.id)).slice(0, 5).map(e => ({ label: e.title, value: evRevenue(e.id), sub: fmtN(evRegs(e.id).length) + ' sold' }));
             return topNav('odash')
                 + '<div class="wrap phead"><div class="badge-row"><span class="pill pill-vio">' + ic('gauge', 12) + ' Organizer Console</span><span class="mono mut">Stage Arena Node #04</span></div>'
-                + '<div class="row-b"><h1>Live Operations & Revenue Telemetry</h1>'
-                + '<div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-g" href="#/organizer/attendees">' + ic('users', 15) + ' Attendees</a><a class="btn btn-p" href="#/organizer/events/create">' + ic('plus', 15) + ' Create Event</a></div></div></div>'
+                + '<div class="row-b"><h1 style="min-width:220px;flex:1 1 220px;margin:0">Live Operations & Revenue Telemetry</h1>'
+                + '<div style="display:flex;gap:10px;flex-wrap:wrap;flex:none">' + '<a class="btn btn-g" href="#/organizer/attendees">' + ic('users', 15) + ' Attendees</a><a class="btn btn-p" href="#/organizer/events/create">' + ic('plus', 15) + ' Create Event</a></div></div></div>'
                 + '<div class="wrap" style="padding-bottom:20px">'
                 + '<div class="mgrid mb24">'
                 + metricTile({ label: 'Total Revenue', c: '#38bdf8', icon: 'dollar', value: shortMoney(rev), trend: CUR_DEFAULT + ' equiv.', tc: 'var(--green)', cap: 'Across ' + evs.length + ' events on this node', bar: Math.min(100, rev / 200000 * 100) })
@@ -1445,7 +1758,7 @@
             const evs = myEvents();
             return topNav('oevents')
                 + '<div class="wrap phead"><span class="eyebrow">' + ic('layers', 13) + ' Event Management</span>'
-                + '<div class="row-b"><h1>My Events</h1><a class="btn btn-p" href="#/organizer/events/create">' + ic('plus', 15) + ' Create Event</a></div></div>'
+                + '<div class="row-b"><h1 style="min-width:160px;flex:1 1 160px;margin:0">My Events</h1><a class="btn btn-p" href="#/organizer/events/create">' + ic('plus', 15) + ' Create Event</a></div></div>'
                 + '<div class="wrap" style="padding-bottom:30px">'
                 + '<div class="glass tablewrap"><table class="dtable"><thead><tr><th>Event</th><th>Date</th><th>Status</th><th>Sold / Capacity</th><th>Revenue</th><th style="text-align:right">Actions</th></tr></thead>'
                 + '<tbody>' + (evs.map(ev => {
@@ -1509,7 +1822,7 @@
             const sched = ROS_EV ? evSchedule(ROS_EV.id) : [], spk = ROS_EV ? evSpeakers(ROS_EV.id) : [];
             const days = [...new Set(sched.map(s => s.day))].sort();
             return topNav('')
-                + '<div class="wrap phead"><div class="row-b"><div><span class="eyebrow">' + ic('cal', 13) + ' Run of Show Builder</span><h1 class="h1-page">Stage Schedule & Agenda</h1>'
+                + '<div class="wrap phead"><div class="row-b"><div style="min-width:220px;flex:1 1 220px"><span class="eyebrow">' + ic('cal', 13) + ' Run of Show Builder</span><h1 class="h1-page">Stage Schedule & Agenda</h1>'
                 + '<p class="sub">Anchor keynotes, panels and mixers to the stage grid \u2014 updates sync to every attendee wallet instantly.</p></div>'
                 + (evs.length > 1 ? '<div class="dd-wrap"><button class="btn btn-g" data-dd>' + ic('layers', 15) + ' Switch Event ' + ic('chevD', 14) + '</button>'
                     + '<div class="dd" style="left:0;right:auto">' + evs.map(e => '<button class="dd-it" data-action="ros-ev" data-id="' + e.id + '"><span class="dot ' + (evLive(e) ? 'g pulse' : 'off') + '"></span> ' + esc(e.title) + '</button>').join('') + '</div></div>' : '') + '</div></div>'
@@ -1529,9 +1842,9 @@
                 + '<div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">'
                 + (spk.map(s => '<div class="glass spk" style="background:rgba(255,255,255,.03)"><img class="avatar" src="' + s.seed + '" style="width:42px;height:42px;border-radius:11px" alt=""><div style="flex:1"><b>' + esc(s.name) + '</b><span>' + esc(s.role) + ' \u00b7 ' + esc(s.org) + '</span></div><button class="kebab" data-action="ros-speaker-del" data-id="' + s.id + '" aria-label="Remove speaker">' + ic('trash', 14) + '</button></div>').join('') || '<p class="mut small mb16">No speakers listed yet.</p>') + '</div>'
                 + (ROS_EV ? '<form data-form="speaker-add"><label class="f-label">Add Speaker</label><div class="spk-edit">'
-                    + '<div><label class="f-label">Name</label><input class="inp" name="name" placeholder="Dr. Selin Aksoy" required></div>'
-                    + '<div><label class="f-label">Role</label><input class="inp" name="role" placeholder="Chief Quantum Architect"></div>'
-                    + '<div><label class="f-label">Organization</label><input class="inp" name="org" placeholder="Aether Dynamics"></div>'
+                    + '<div><label class="f-label">Name</label><input class="inp" name="name" placeholder="Dr. Amina Rahman" required></div>'
+                    + '<div><label class="f-label">Role</label><input class="inp" name="role" placeholder="Chief Technology Officer"></div>'
+                    + '<div><label class="f-label">Organization</label><input class="inp" name="org" placeholder="Orbit Analytics"></div>'
                     + '<button class="btn btn-p" type="submit">' + ic('plus', 15) + '</button></div></form>' : '') + '</div>'
                 + '</div>' + consoleFooter();
         }
@@ -1697,12 +2010,12 @@
                 + '<div><h3>1. Event Basics</h3><p>Core taxonomy, summit designations, and contextual narrative.</p></div>'
                 + '<span class="badge-r"><span class="wbadge">Config-ID: ' + esc(W.id ? 'EVNT-' + W.id.slice(-4).toUpperCase() : 'PENDING') + '</span></span></div>'
                 + '<div class="field"><label>Event Title <span class="mut" id="wiz-cc">' + (W.title || '').length + ' / 80 chars</span></label>'
-                + '<input class="inp" data-wf="title" maxlength="80" value="' + esc(W.title) + '" placeholder="AI & Quantum Systems World Congress 2026"></div>'
+                + '<input class="inp" data-wf="title" maxlength="80" value="' + esc(W.title) + '" placeholder="Global Tech & Innovation Summit 2026"></div>'
                 + '<div class="field"><label>Category Classification</label><div class="cat-chips">' + db.categories.map(cat => '<button type="button" class="chip-f ' + (W.category === cat.id ? 'act' : '') + '" data-action="wiz-cat" data-c="' + cat.id + '">' + ic(cat.icon, 13) + ' ' + esc(cat.name) + '</button>').join('') + '</div></div>'
-                + '<div class="field"><label>Executive Subtitle</label><input class="inp" data-wf="subtitle" value="' + esc(W.subtitle) + '" placeholder="The Definitive Assembly of \u2026"></div>'
+                + '<div class="field"><label>Executive Subtitle</label><input class="inp" data-wf="subtitle" value="' + esc(W.subtitle) + '" placeholder="The premier gathering for industry leaders and innovators"></div>'
                 + '<div class="field" style="margin-bottom:0"><label>Event Description & Operational Directive</label>'
                 + '<div class="toolbar"><button type="button"><b>B</b></button><button type="button"><i>I</i></button><button type="button">\u2261</button><span class="md-ok"><span class="dot g pulse"></span>Markdown Synced</span></div>'
-                + '<textarea class="inp" data-wf="description" rows="5" placeholder="Over two intensive days at the Global Arena\u2026" style="border-radius:0 0 8px 8px">' + esc(W.description) + '</textarea></div></div>'
+                + '<textarea class="inp" data-wf="description" rows="5" placeholder="Join thousands of professionals over two days for keynotes, workshops and networking\u2026" style="border-radius:0 0 8px 8px">' + esc(W.description) + '</textarea></div></div>'
                 + '<div class="glass wsec"><div class="wsec-h"><span class="wt" style="color:#f0abfc;background:rgba(236,72,153,.1);border-color:rgba(236,72,153,.35)">' + ic('cam', 17) + '</span>'
                 + '<div><h3>2. Visual Assets & Branding</h3><p>Holographic badge aesthetics, stream keyframes, and chromatic palette.</p></div>'
                 + '<span class="badge-r"><span class="wbadge">Recommended: 3840 \u00d7 2160 (16:9)</span></span></div>'
@@ -2088,7 +2401,7 @@
             if (!u) { acts.push(['Sign In / Register', 'out', '#/login'], ['Help & FAQ', 'help', '#/faq']) }
             else {
                 acts.push(['My Dashboard', 'grid', ROLE_HOME[u.role]]);
-                if (u.role === 'attendee') acts.push(['My Tickets', 'ticket', '#/attendee/tickets'], ['My Registrations', 'cal', '#/attendee/registrations'], ['Wishlist', 'heart', '#/attendee/wishlist']);
+                if (u.role === 'attendee') acts.push(['My Tickets', 'ticket', '#/attendee/tickets'], ['My Registrations', 'cal', '#/attendee/registrations'], ['Wishlist', 'heart', '#/attendee/wishlist'], ['Billing & Orders', 'card', '#/billing']);
                 if (u.role === 'organizer') acts.push(['My Events', 'layers', '#/organizer/events'], ['Create Event', 'plus', '#/organizer/events/create'], ['Analytics', 'activity', '#/organizer/analytics']);
                 if (u.role === 'admin') acts.push(['Stages Moderation', 'radio', '#/admin/stages'], ['Platform Settings', 'settings', '#/admin/settings']);
                 acts.push(['Notifications', 'bell', '#/notifications'], ['Profile & Settings', 'user', '#/profile']);
@@ -2129,7 +2442,8 @@
             if (k === 'success') return SuccessView(seg[1]);
             if (k === 'payment') return PaymentCallbackView(q);
             if (k === 'notifications') { if (!u) return guardLogin(); return NotificationsView() }
-            if (k === 'profile') { if (!u) return guardLogin(); return ProfileView() }
+            if (k === 'profile') { if (!u) return guardLogin(); return ProfileView(q) }
+            if (k === 'billing') { if (!u) return guardLogin(); return BillingView() }
             if (k === 'attendee') {
                 if (!u) return guardLogin();
                 if (u.role !== 'attendee') { toast('That area is restricted to attendee accounts \u2014 redirected to your dashboard.', 'warn'); location.hash = ROLE_HOME[u.role]; return '' }
@@ -2165,7 +2479,7 @@
             return NotFound();
         }
         function setPageTitle(seg) {
-            const T = { events: 'Explore Events', about: 'About', contact: 'Contact', faq: 'Help & FAQ', privacy: 'Privacy Policy', terms: 'Terms & Conditions', login: 'Sign In', register: 'Create Account', 'forgot-password': 'Reset Password', 'reset-password': 'Set New Password', notifications: 'Notifications', profile: 'Profile & Settings', checkout: 'Checkout' };
+            const T = { events: 'Explore Events', about: 'About', contact: 'Contact', faq: 'Help & FAQ', privacy: 'Privacy Policy', terms: 'Terms & Conditions', login: 'Sign In', register: 'Create Account', 'forgot-password': 'Reset Password', 'reset-password': 'Set New Password', notifications: 'Notifications', profile: 'Profile & Settings', billing: 'Billing & Orders', checkout: 'Checkout' };
             if (seg[0] === 'event') { const ev = db.events.find(e => e.id === seg[1]); document.title = (ev ? ev.title : 'Event') + ' \u2014 Eventora' }
             else if (seg[0] === 'attendee') document.title = 'Attendee Dashboard \u2014 Eventora';
             else if (seg[0] === 'organizer') document.title = 'Organizer Console \u2014 Eventora';
@@ -2226,6 +2540,7 @@
             'mobile-nav': () => toggleMMenu(),
             'signout': () => signOut(),
             'google-signin': (dd) => googleSignIn(dd.tab, dd.role),
+            'goto-login': () => { closeModal(); location.hash = '#/login' },
             'pw-toggle': (dd, el) => {
                 const inp = document.getElementById(dd.target); if (!inp) return;
                 const showing = inp.type === 'text';
@@ -2301,7 +2616,11 @@
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         ref: o.intent.ref, amount: o.total, currency: o.currency || CUR_DEFAULT, method: o.intent.method,
-                        description: 'Eventora pending order', callbackUrl: location.origin + location.pathname + '#/payment/callback'
+                        description: 'Eventora pending order',
+                        callbackUrl: paymentReturnUrl(),
+                        successUrl: paymentReturnUrl('success'),
+                        failUrl: paymentReturnUrl('fail'),
+                        cancelUrl: paymentReturnUrl('cancel')
                     })
                 })
                     .then(r => r.json().catch(() => ({})).then(j => ({ ok: r.ok, j })))
@@ -2684,11 +3003,12 @@
                 const lastSignIn = Date.parse(authUser.last_sign_in_at || authUser.created_at || '');
                 const isBrandNew = created && Math.abs(lastSignIn - created) < 8000;
                 if (!isBrandNew) {
+                    const dupEmail = authUser.email || (u && u.email) || '';
                     db.meta.sessionUserId = null; persist();
                     try { await sb.auth.signOut() } catch (e) { }
-                    toast('An account with this Google email already exists \u2014 please sign in instead.', 'warn');
                     location.replace('#/login');
                     lastRenderedHash = null; render();
+                    openDuplicateAccountModal(dupEmail);
                     return;
                 }
                 if (intent.role && intent.role !== u.role) {
@@ -2737,6 +3057,15 @@
            gateway redirect back to #/payment/callback) stays put instead of being yanked to
            their dashboard mid-render. */
         let BOOT_RESTORING = true;
+        /* getSession() (below) and onAuthStateChange's SIGNED_IN event (further below) both
+           race to redraw the page once a session is confirmed on a normal load \u2014 e.g. the
+           browser landing back on #/payment/callback after a gateway redirect. Without this
+           guard both paths could each call render() once the session settles, tearing down
+           and rebuilding the whole page twice in a row (visible as a flash/blink, and it would
+           also restart the cancel-page countdown from scratch). Only the first one through
+           actually redraws; the other is a no-op. */
+        let BOOT_RESYNC_RENDERED = false;
+        function bootResyncRenderOnce() { if (BOOT_RESYNC_RENDERED) return; BOOT_RESYNC_RENDERED = true; lastRenderedHash = null; render(); }
         (async () => {
             try {
                 const { data: { session: sbSession } } = await sb.auth.getSession();
@@ -2747,7 +3076,7 @@
                     db.meta.sessionUserId = sbSession.user.id; persist();
                     if (AUTH_CALLBACK_PENDING) {
                         landAfterAuthCallback(u, sbSession.user);
-                    } else { lastRenderedHash = null; render(); }
+                    } else { bootResyncRenderOnce(); }
                 } else if (AUTH_CALLBACK_PENDING && !PW_RECOVERY_READY) {
                     const m = /error_description=([^&]+)/.exec(BOOT_HASH);
                     toast(m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : 'Sign-in could not be completed. Please try again.', 'err');
@@ -2791,7 +3120,7 @@
                            the browser landing back on #/payment/callback after a gateway
                            redirect) \u2014 sync state and redraw the CURRENT route only. Do not
                            steal the user away to their dashboard. */
-                        lastRenderedHash = null; render();
+                        bootResyncRenderOnce();
                     } else {
                         lastRenderedHash = null; render();
                         toast('Signed in as ' + esc(u.name) + ' \u00b7 ' + u.role + ' account.', 'ok'); location.hash = homeFor(u);

@@ -185,6 +185,20 @@
             box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .12)
         }
 
+        .flash-in {
+            animation: flashIn 1.6s ease-out 1
+        }
+
+        @keyframes flashIn {
+            0% {
+                box-shadow: 0 0 0 1px rgba(99, 102, 241, .7), 0 0 40px -4px rgba(99, 102, 241, .55), inset 0 1px 0 0 rgba(255, 255, 255, .12)
+            }
+
+            100% {
+                box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, .12)
+            }
+        }
+
         .glass-hi {
             background: rgba(15, 23, 42, .75);
             border: 1px solid var(--line2);
@@ -1110,7 +1124,7 @@
             backdrop-filter: blur(2px);
             opacity: 0;
             pointer-events: none;
-            transition: opacity .22s ease;
+            transition: opacity .3s ease;
             z-index: 190
         }
 
@@ -1129,7 +1143,8 @@
             border-left: 1px solid var(--line);
             box-shadow: -18px 0 40px rgba(0, 0, 0, .35);
             transform: translateX(100%);
-            transition: transform .25s ease;
+            opacity: 0;
+            transition: transform .38s cubic-bezier(.16, 1, .3, 1), opacity .3s ease;
             z-index: 200;
             display: flex;
             flex-direction: column;
@@ -1137,7 +1152,8 @@
         }
 
         .mmenu.open {
-            transform: translateX(0)
+            transform: translateX(0);
+            opacity: 1
         }
 
         .mmenu-head {
@@ -1152,6 +1168,28 @@
         .mmenu-title {
             font: 700 15px var(--fd);
             color: #fff
+        }
+
+        .mmenu-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex: none;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid var(--line2);
+            color: #fff;
+            transition: background .15s, border-color .15s, transform .15s
+        }
+
+        .mmenu-close:hover {
+            background: rgba(255, 255, 255, .16);
+            border-color: rgba(255, 255, 255, .4)
+        }
+
+        .mmenu-close:active {
+            transform: scale(.92)
         }
 
         .mmenu-links {
@@ -1476,6 +1514,350 @@
             align-items: center;
             gap: 12px;
             flex-wrap: wrap
+        }
+
+        /* ===== CINEMATIC SCROLL HERO \u2014 sticky video scrubbed by scroll, glass scenes revealed frame-by-frame ===== */
+        .cine-hero {
+            --cmx: 0; --cmy: 0;
+            height: 820vh;
+            position: relative;
+        }
+        .cine-stage {
+            position: sticky;
+            top: 66px;
+            width: 100%;
+            height: calc(100vh - 66px);
+            height: calc(100lvh - 66px);
+            min-height: 540px;
+            overflow: hidden;
+            background: #05060a;
+            isolation: isolate;
+        }
+        .cine-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transform: scale(1.012) translate3d(calc(var(--cmx) * -14px), calc(var(--cmy) * -8px), 0);
+            filter: saturate(.94) contrast(1.03);
+            will-change: transform;
+        }
+        .cine-vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 46%, transparent 18%, rgba(0, 0, 0, .18) 56%, rgba(3, 3, 8, .66) 100%),
+                linear-gradient(180deg, rgba(3, 3, 8, .62) 0%, transparent 26%, transparent 66%, rgba(3, 3, 8, .74) 100%);
+        }
+        .cine-shade {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            background: linear-gradient(155deg, rgba(99, 102, 241, .12), transparent 42%, rgba(236, 72, 153, .10));
+        }
+        .cine-grain {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            opacity: .02;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(255, 255, 255, .6) .5px, transparent .5px);
+            background-size: 4px 4px;
+        }
+        .cine-amb {
+            position: absolute;
+            z-index: 1;
+            width: 34vw;
+            height: 34vw;
+            max-width: 560px;
+            max-height: 560px;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(90px);
+            opacity: .22;
+            mix-blend-mode: screen;
+            will-change: transform;
+        }
+        .amb1 { left: -10vw; top: 6vh; background: #6366f1; transform: translate3d(calc(var(--cmx) * 28px), calc(var(--cmy) * 16px), 0) }
+        .amb2 { right: -8vw; top: 24vh; background: #38bdf8; transform: translate3d(calc(var(--cmx) * -24px), calc(var(--cmy) * -14px), 0) }
+        .amb3 { left: 38%; bottom: -16vw; background: #ec4899; transform: translate3d(calc(var(--cmx) * 16px), calc(var(--cmy) * -18px), 0) }
+
+        .cine-scene {
+            position: absolute;
+            z-index: 5;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px clamp(24px, 7vw, 116px);
+            opacity: 0;
+            pointer-events: none;
+            will-change: transform, opacity, filter;
+        }
+        .cine-scene.on { pointer-events: auto }
+
+        /* Centered scenes (intro + final CTA) stay dead-middle; side scenes hug an edge
+           and cap their width so the video stays visible on the opposite half. */
+        .cine-scene.left { align-items: flex-start; text-align: left }
+        .cine-scene.right { align-items: flex-end; text-align: left }
+
+        /* The finale spans the full frame: copy on the left, a live panel on the right,
+           so neither half of the video is left empty. */
+        .cine-scene.split {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: clamp(28px, 5vw, 80px);
+            text-align: left;
+        }
+        .cine-col { flex: 1 1 0; min-width: 0 }
+        .cine-col.side { max-width: 400px; flex: 0 1 400px }
+
+        .cine-assure {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            margin-top: 24px;
+        }
+        .cine-assure span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font: 600 12.5px var(--fd);
+            color: #c6d2e2;
+        }
+        .cine-assure svg { color: var(--green) }
+
+        .cine-marks {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-top: 30px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+        }
+        .cm-lbl {
+            font: 700 9.5px var(--fd);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--mut);
+        }
+        .cm-name {
+            font: 700 13px var(--fd);
+            letter-spacing: -.01em;
+            color: rgba(255, 255, 255, .58);
+        }
+
+        /* Right-hand "next doors opening" panel */
+        .cine-next { padding: 20px; border-radius: var(--rl) }
+        .cn-h {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .cn-row {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--line);
+            color: inherit;
+        }
+        .cn-row:hover .cn-t b { color: #c7d2fe }
+        .cn-row:hover .cn-a { transform: translateX(3px); color: var(--cyan2) }
+        .cn-d {
+            width: 44px;
+            flex: none;
+            text-align: center;
+            padding: 6px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid var(--line2);
+        }
+        .cn-d b { display: block; font: 800 17px var(--fd); line-height: 1 }
+        .cn-d > span {
+            display: block;
+            margin-top: 2px;
+            font: 700 8.5px var(--fd);
+            letter-spacing: .12em;
+            color: var(--mut);
+        }
+        .cn-t { flex: 1; min-width: 0 }
+        .cn-t b {
+            display: block;
+            font: 700 13.5px var(--fd);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color .18s;
+        }
+        .cn-t > span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 3px;
+            font-size: 11.5px;
+            color: var(--mut);
+        }
+        .cn-a { flex: none; color: var(--mut); transition: transform .18s, color .18s }
+        .cn-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 15px;
+            font: 700 11.5px var(--fd);
+            letter-spacing: .04em;
+            color: var(--cyan2);
+        }
+        .cn-all:hover { color: #7dd3fc }
+
+        .cine-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px }
+        .cmi { padding: 14px 12px; border-radius: var(--r); text-align: center }
+        .cmi b { display: block; font: 800 18px var(--fd); line-height: 1.1 }
+        .cmi span {
+            display: block;
+            margin-top: 4px;
+            font: 700 8.5px var(--fd);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--mut);
+        }
+
+        .cine-box { width: min(500px, 46vw) }
+        .cine-scene.right .cine-box { display: flex; flex-direction: column; align-items: flex-start }
+
+        .cine-scene .eyebrow { margin-bottom: 20px }
+        .cine-h1 {
+            font-size: clamp(36px, 4.4vw, 64px);
+            font-weight: 800;
+            line-height: 1.04;
+            letter-spacing: -.03em;
+            margin: 0 0 18px;
+        }
+        /* The intro carries the most copy, so it gets a wider column than the other scenes. */
+        .cine-box.intro { width: min(620px, 52vw) }
+        .cine-sub {
+            max-width: 520px;
+            margin: 0 0 30px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #dbe3f0;
+            text-shadow: 0 1px 14px rgba(0, 0, 0, .55);
+        }
+        .cine-hint {
+            margin-top: 34px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font: 700 10px var(--fd);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #9fb0c8;
+        }
+        .cine-tag {
+            display: block;
+            font: 700 10px var(--fd);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--cyan2);
+            margin-bottom: 14px;
+        }
+        .cine-h2 {
+            font-size: clamp(30px, 3.9vw, 54px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -.025em;
+            margin: 0 0 20px;
+        }
+        .cine-line {
+            max-width: 460px;
+            color: #dbe3f0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0 0 24px;
+            text-shadow: 0 1px 14px rgba(0, 0, 0, .55);
+        }
+        .cine-glass { width: 100%; padding: 24px }
+        .cine-glass.hero-trust { display: flex; flex-wrap: wrap; gap: 0; margin: 0 }
+        .cine-glass.hero-trust > div { padding: 2px 20px }
+        .cine-glass.wide, .cine-glass.stage-main { text-align: left; padding: 18px }
+        .cine-floats { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap }
+        .cine-floats .float-card { position: static; animation: none; flex: 1 1 200px }
+        .cine-chips { display: flex; gap: 10px; flex-wrap: wrap }
+
+        /* Meter bars (gate security scene) */
+        .cine-meters { margin-top: 18px; display: grid; gap: 14px }
+        .cm-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px }
+        .cm-h span { font: 700 10px var(--fd); letter-spacing: .1em; text-transform: uppercase; color: var(--mut) }
+        .cm-h b { font: 700 13px var(--fd) }
+        .cm-t { height: 4px; border-radius: 99px; background: rgba(255, 255, 255, .09); overflow: hidden }
+        .cm-t > i { display: block; height: 100%; border-radius: 99px; box-shadow: 0 0 12px -2px currentColor }
+
+        /* KPI tiles (signal scene) */
+        .cine-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+        .cine-kpi { padding: 18px; border-radius: var(--r) }
+        .ck-ic { display: block; margin-bottom: 10px }
+        .cine-kpi b { display: block; font: 800 24px var(--fd); line-height: 1.1 }
+        .cine-kpi > span:last-child { font: 700 9.5px var(--fd); letter-spacing: .1em; text-transform: uppercase; color: var(--mut) }
+
+        /* Vertical chips (spheres scene) */
+        .cine-vgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+        .cine-vchip {
+            display: flex; align-items: center; gap: 10px;
+            padding: 12px 14px; border-radius: var(--r); color: inherit;
+            transition: border-color .2s, background .2s;
+        }
+        .cine-vchip:hover { border-color: rgba(139, 92, 246, .5); background: rgba(255, 255, 255, .07) }
+        .cine-vchip b { font: 700 13px var(--fd); flex: 1 }
+
+        /* Testimonial */
+        .cine-quote { position: relative; padding: 28px }
+        .cq-mark { position: absolute; top: 4px; left: 18px; font: 800 62px var(--fd); color: rgba(139, 92, 246, .35); line-height: 1 }
+        .cine-quote p { position: relative; font-size: 15.5px; line-height: 1.6; color: #e7ecf5; margin: 14px 0 20px }
+        .cq-by { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line); padding-top: 16px }
+        .cq-av {
+            width: 38px; height: 38px; border-radius: 50%; flex: none; display: grid; place-items: center;
+            font: 800 15px var(--fd); color: #fff;
+            background: linear-gradient(135deg, var(--vio), var(--mag));
+        }
+        .cq-by b { display: block; font: 700 13px var(--fd) }
+
+        @media (max-width: 1100px) {
+            .cine-box { width: min(460px, 56vw) }
+            .cine-box.intro { width: min(520px, 62vw) }
+            .cine-col.side { max-width: 330px; flex: 0 1 330px }
+            .cine-mini { grid-template-columns: repeat(3, 1fr) }
+        }
+        @media (max-width: 800px) {
+            .cine-stage { min-height: 480px }
+            .cine-scene { padding: 32px 22px; align-items: center !important; text-align: center !important; overflow-y: auto }
+            .cine-box, .cine-box.intro { width: 100%; max-width: 440px; align-items: center !important; text-align: center }
+            .cine-scene.right .cine-box { align-items: center }
+            .cine-line, .cine-sub { margin-left: auto; margin-right: auto }
+            .cine-chips, .cine-floats { justify-content: center }
+            .cine-h1 { font-size: clamp(32px, 9.5vw, 50px) }
+            .cine-h2 { font-size: clamp(27px, 8vw, 38px) }
+            .cine-glass.hero-trust { flex-direction: column; gap: 14px }
+            .cine-glass.hero-trust > div { border-left: none; padding: 0 }
+            .cine-kpis, .cine-vgrid { grid-template-columns: 1fr }
+            .cine-scene.split { flex-direction: column; justify-content: center; gap: 22px }
+            .cine-col, .cine-col.side { flex: none; width: 100%; max-width: 440px }
+            .cine-assure { justify-content: center; gap: 8px 14px }
+            .cine-marks { justify-content: center }
+            .cine-next { padding: 16px }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cine-video, .cine-amb, .cine-scene { transition: none }
         }
 
         .hero-sec {
@@ -1917,10 +2299,20 @@
             position: absolute;
             top: 12px;
             left: 12px;
+            right: 12px;
             z-index: 2;
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap
+            gap: 6px;
+            flex-wrap: wrap;
+            /* leave room so wrapped badge pills never run under the date pill on narrow cards */
+            max-width: calc(100% - 92px)
+        }
+
+        .ev-badges .pill {
+            padding: 3px 9px;
+            font-size: 9.5px;
+            gap: 4px;
+            white-space: nowrap
         }
 
         .ev-datep {
@@ -1935,7 +2327,44 @@
             letter-spacing: .08em;
             padding: 5px 10px;
             border-radius: 9999px;
-            backdrop-filter: blur(8px)
+            backdrop-filter: blur(8px);
+            max-width: 118px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        @media (max-width:1280px) {
+            .ev-badges {
+                max-width: calc(100% - 82px)
+            }
+
+            .ev-datep {
+                font-size: 9px;
+                padding: 4px 8px;
+                max-width: 100px
+            }
+        }
+
+        @media (max-width:420px) {
+            .ev-badges {
+                top: 10px;
+                left: 10px;
+                max-width: calc(100% - 76px)
+            }
+
+            .ev-badges .pill {
+                padding: 3px 7px;
+                font-size: 9px
+            }
+
+            .ev-datep {
+                top: 10px;
+                right: 10px;
+                font-size: 8.5px;
+                padding: 4px 7px;
+                max-width: 92px
+            }
         }
 
         .ev-body {
@@ -2104,7 +2533,7 @@
             align-items: center;
             justify-content: center;
             gap: 44px;
-            margin-top: 40px;
+            margin: 40px 0 16px;
             flex-wrap: wrap
         }
 
@@ -2221,7 +2650,7 @@
             margin-bottom: 16px
         }
 
-        .lfoot-grid a {
+        .lfoot-grid a:not(.brand) {
             display: block;
             font-size: 13px;
             color: var(--body);
@@ -2238,6 +2667,16 @@
             color: var(--body);
             margin: 14px 0 18px;
             max-width: 300px
+        }
+
+        .lfoot-brand .brand {
+            gap: 9px;
+            line-height: 1
+        }
+
+        .lfoot-brand .brand svg {
+            width: 28px;
+            height: 28px
         }
 
         .lfoot-bot {
@@ -2264,15 +2703,23 @@
             border-radius: 10px;
             display: grid;
             place-items: center;
+            padding: 5px;
             background: rgba(255, 255, 255, .05);
             border: 1px solid var(--line);
             color: var(--body);
             transition: all .18s;
-            cursor: pointer
+            cursor: pointer;
+            overflow: hidden
+        }
+
+        .soc svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 6px
         }
 
         .soc:hover {
-            color: #fff;
             border-color: rgba(139, 92, 246, .55);
             background: rgba(99, 102, 241, .14);
             transform: translateY(-2px);
@@ -2603,6 +3050,48 @@
             border-top: 1px solid rgba(255, 255, 255, .08)
         }
 
+        .co-steps {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap
+        }
+
+        .co-steps i {
+            width: 20px;
+            height: 1px;
+            background: var(--line2);
+            flex: none
+        }
+
+        .co-step {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font: 700 11.5px var(--fd);
+            color: var(--mut);
+            letter-spacing: .01em
+        }
+
+        .co-step b {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font: 800 10px var(--fd);
+            color: var(--mut);
+            border: 1px solid var(--line2);
+            flex: none
+        }
+
+        .co-step:first-child b {
+            color: #fff;
+            border-color: var(--vio2);
+            background: rgba(99, 102, 241, .18)
+        }
+
         .co-grid {
             display: grid;
             grid-template-columns: 1fr 380px;
@@ -2705,26 +3194,81 @@
         .paycard {
             display: flex;
             align-items: center;
-            gap: 9px;
-            padding: 12px 14px;
+            gap: 12px;
+            padding: 13px 14px;
             border: 1px solid var(--line);
-            border-radius: 10px;
-            font: 600 12.5px var(--fd);
+            border-radius: 12px;
             color: var(--body);
-            cursor: pointer
+            cursor: pointer;
+            transition: border-color .15s, background .15s
         }
 
         .paycard .pd {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            flex: none
+            min-width: 36px;
+            height: 36px;
+            padding: 0 9px;
+            border-radius: 9px;
+            border: 1px solid;
+            flex: none;
+            display: grid;
+            place-items: center;
+            font: 800 11.5px var(--fd);
+            letter-spacing: -.02em;
+            white-space: nowrap
+        }
+
+        .paycard .pd-logo {
+            background: #fff;
+            border-color: rgba(255, 255, 255, .12);
+            padding: 0 10px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .25)
+        }
+
+        .paycard .pd-logo svg {
+            display: block
+        }
+
+        .paycard .pd-t {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px
+        }
+
+        .paycard .pd-t b {
+            font: 700 13px var(--fd);
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .paycard .pd-t span {
+            font-size: 10.5px;
+            color: var(--mut);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .paycard .pd-ck {
+            flex: none;
+            color: var(--vio2);
+            opacity: 0;
+            transform: scale(.6);
+            transition: opacity .15s, transform .15s
         }
 
         .paycard.act {
             border-color: rgba(99, 102, 241, .6);
             background: rgba(99, 102, 241, .08);
             color: #fff
+        }
+
+        .paycard.act .pd-ck {
+            opacity: 1;
+            transform: scale(1)
         }
 
         .success-wrap {
@@ -2760,6 +3304,43 @@
             border-color: rgba(251, 191, 36, .45);
             color: var(--amber);
             box-shadow: 0 0 40px -8px rgba(251, 191, 36, .5)
+        }
+
+        .pay-redirect {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px
+        }
+
+        .pay-redirect-bar {
+            width: 100%;
+            max-width: 260px;
+            height: 4px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, .08);
+            overflow: hidden
+        }
+
+        .pay-redirect-fill {
+            height: 100%;
+            width: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, var(--amber), #fbbf24);
+            transition: width linear;
+            transition-duration: 6s
+        }
+
+        .pay-redirect-txt {
+            margin: 0
+        }
+
+        .pay-redirect-txt b {
+            color: var(--text);
+            font-weight: 700
         }
 
         @keyframes pop {
@@ -4322,17 +4903,8 @@
         }
 
         @media (max-width:1200px) {
-            .search-pill span {
-                display: none
-            }
-
-            .search-pill kbd {
-                display: none
-            }
-
             .search-pill {
-                min-width: 0;
-                padding: 0 12px
+                display: none
             }
 
             .syspill {
@@ -4350,6 +4922,27 @@
             }
 
             .nav-right {
+                margin-left: auto
+            }
+        }
+
+        /* Console (logged-in) headers carry more chrome than the public nav \u2014 extra
+           nav-links plus the notification bell and account beat \u2014 so on tablet / small-laptop
+           widths that combination can overflow past the sticky header's edge before the public
+           680px breakpoint kicks in. Since the page disables horizontal scroll, anything pushed
+           past that edge (commonly the hamburger, being last in the row) becomes invisible with
+           no way to reach it. Switch console pages to the hamburger much earlier to keep the
+           row from ever getting that tight. */
+        @media (max-width:900px) {
+            .cnav .nav-links {
+                display: none
+            }
+
+            .cnav .mmenu-btn {
+                display: grid
+            }
+
+            .cnav .nav-right {
                 margin-left: auto
             }
         }
@@ -4444,6 +5037,10 @@
                 gap: 10px
             }
 
+            .search-pill {
+                display: none
+            }
+
             .ubeat .uinfo {
                 display: none
             }
@@ -4459,12 +5056,26 @@
             .rv-grid,
             .tk-grid,
             .mode-grid,
+            .mx-grid,
             .cols3 {
                 grid-template-columns: 1fr !important
             }
 
+            .view > section {
+                margin-top: 28px
+            }
+
+            .view > section:first-child {
+                margin-top: 0
+            }
+
+            .matrix, .cta-band {
+                margin-top: 4px
+            }
+
             .hero-sec {
-                padding: 44px 0 24px
+                padding: 44px 0 24px;
+                overflow: hidden
             }
 
             .hero-copy h1 {
@@ -4479,8 +5090,24 @@
                 padding: 28px 22px
             }
 
+            .logos {
+                gap: 18px 26px;
+                justify-content: flex-start
+            }
+
             .cta-form {
-                flex-direction: column
+                flex-direction: column;
+                gap: 12px
+            }
+
+            .cta-form .inp {
+                height: 48px;
+                font-size: 15px
+            }
+
+            .cta-form button {
+                width: 100%;
+                height: 48px
             }
 
             .cta-band {
@@ -4571,6 +5198,14 @@
         @media (max-width:400px) {
             .nav-in {
                 padding: 0 12px;
+                gap: 8px
+            }
+
+            .brand span {
+                display: none
+            }
+
+            .nav-right {
                 gap: 8px
             }
 
