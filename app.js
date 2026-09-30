@@ -1,4 +1,4 @@
-        /* ============ APP SCRIPT — PART 1 of 2 (engine: utils, store, seed, auth, charts, shared components) ============ */
+/* ============ APP SCRIPT — PART 1 of 2 (engine: utils, store, seed, auth, charts, shared components) ============ */
         'use strict';
         const CONFIG = Object.assign({ googleClientId: '', authVerifyEndpoint: '' }, window.EVENTORA_CONFIG || {});
         /* ---- Supabase (real backend, Phase 1: auth + profiles) ---- */
@@ -648,6 +648,111 @@
             const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Eventora//Glass Ticketing//EN', 'BEGIN:VEVENT', 'UID:' + reg.passId + '@eventora', 'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', 'DTSTART:' + sd + 'T' + doors + '00', 'DTEND:' + ed + 'T235900', 'SUMMARY:' + ev.title, 'LOCATION:' + ev.venue + ', ' + ev.city, 'DESCRIPTION:Eventora pass ' + reg.passId + ' \u00b7 Tier ' + reg.tierName, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
             downloadFile('eventora-' + ev.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.ics', ics, 'text/calendar');
             toast('Calendar file downloaded.', 'ok');
+        }
+        function downloadTicketPDF(reg, ev) {
+            try {
+                const ord = db.orders.find(o => o.registrationId === reg.id);
+                const paidVia = ord && ord.method && ord.method !== 'Free';
+                const W = 1240, H = 1754, M = 90; /* A4 @150dpi, card margin */
+                const c = document.createElement('canvas'); c.width = W; c.height = H;
+                const g = c.getContext('2d');
+                const SANS = 'Helvetica, Arial, "Segoe UI", sans-serif', MONO = '"Courier New", Courier, monospace';
+                const spacing = px => { if ('letterSpacing' in g) g.letterSpacing = px + 'px' };
+                const rr = (x, y, w, h, r) => { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath() };
+                const wrap = (t, mw, maxLines) => {
+                    const words = String(t ?? '').split(/\s+/), lines = []; let cur = '';
+                    words.forEach(w => { const test = cur ? cur + ' ' + w : w; if (g.measureText(test).width > mw && cur) { lines.push(cur); cur = w } else cur = test });
+                    if (cur) lines.push(cur);
+                    if (maxLines && lines.length > maxLines) { lines.length = maxLines; let l = lines[maxLines - 1]; while (l.length > 1 && g.measureText(l + '\u2026').width > mw) l = l.slice(0, -1); lines[maxLines - 1] = l + '\u2026' }
+                    return lines;
+                };
+                /* page + card */
+                g.fillStyle = '#ffffff'; g.fillRect(0, 0, W, H);
+                rr(M, M, W - M * 2, H - M * 2, 34); g.fillStyle = '#ffffff'; g.fill(); g.lineWidth = 3; g.strokeStyle = '#d5dbe7'; g.stroke();
+                /* header band */
+                const HB = 280;
+                g.save(); rr(M, M, W - M * 2, H - M * 2, 34); g.clip();
+                const gr = g.createLinearGradient(M, M, W - M, M + HB); gr.addColorStop(0, '#1e1b4b'); gr.addColorStop(.55, '#4f46e5'); gr.addColorStop(1, '#0891b2');
+                g.fillStyle = gr; g.fillRect(M, M, W - M * 2, HB); g.restore();
+                g.textBaseline = 'alphabetic'; g.textAlign = 'left';
+                g.fillStyle = 'rgba(255,255,255,.85)'; g.font = '700 26px ' + SANS; spacing(6); g.fillText('EVENTORA', M + 50, M + 68);
+                g.textAlign = 'right'; g.fillText('ENTRY PASS', W - M - 50, M + 68); g.textAlign = 'left'; spacing(0);
+                g.fillStyle = '#ffffff'; g.font = '800 54px ' + SANS;
+                wrap(ev.title, W - M * 2 - 100, 2).forEach((l, i) => g.fillText(l, M + 50, M + 150 + i * 66));
+                /* tier badge */
+                const vip = reg.tierName.includes('VIP'), vir = reg.tierName === 'Virtual';
+                const bc = vip ? ['#fef3c7', '#b45309'] : vir ? ['#cffafe', '#0e7490'] : ['#e0e7ff', '#4338ca'];
+                g.font = '700 26px ' + SANS; spacing(2);
+                const tierTxt = String(reg.tierName).toUpperCase(), tw = g.measureText(tierTxt).width + 52;
+                let y = M + HB + 40;
+                rr(M + 50, y, tw, 52, 26); g.fillStyle = bc[0]; g.fill(); g.fillStyle = bc[1]; g.fillText(tierTxt, M + 76, y + 35); spacing(0);
+                /* attendee */
+                y += 128; g.fillStyle = '#0b0f19'; g.font = '800 52px ' + SANS;
+                wrap(reg.attendeeName, W - M * 2 - 100, 1).forEach(l => g.fillText(l, M + 50, y));
+                if (reg.attendeeEmail) { y += 44; g.fillStyle = '#64748b'; g.font = '400 27px ' + SANS; g.fillText(reg.attendeeEmail, M + 50, y) }
+                /* detail grid */
+                const stCol = reg.status === 'checked_in' ? '#059669' : reg.status === 'confirmed' ? '#4338ca' : '#b45309';
+                const cells = [
+                    ['Event', ev.title, null], ['Date', fmtRange(ev.startDate, ev.endDate) + (ev.doors ? ' \u00b7 ' + ev.doors : ''), null],
+                    ['Venue', ev.venue + (ev.city ? ', ' + ev.city : ''), null], ['Pass ID', truncHash(reg.passId), MONO],
+                    ['Gate', reg.gate || 'Assigned at check-in', null], ['Status', reg.status.replace('_', ' ').replace(/^./, m => m.toUpperCase()), stCol]
+                ];
+                const colX = [M + 50, M + 50 + (W - M * 2 - 100) / 2 + 10], colW = (W - M * 2 - 100) / 2 - 30;
+                y += 50;
+                for (let r = 0; r < cells.length; r += 2) {
+                    let rowLines = 1;
+                    const laid = [cells[r], cells[r + 1]].map((cell, k) => {
+                        g.font = (cell[2] === MONO ? '700 32px ' : '700 32px ') + (cell[2] === MONO ? MONO : SANS);
+                        const ls = wrap(cell[1], colW, 2); rowLines = Math.max(rowLines, ls.length); return { cell, ls, x: colX[k] };
+                    });
+                    laid.forEach(o => {
+                        g.fillStyle = '#94a3b8'; g.font = '700 21px ' + SANS; spacing(3); g.fillText(o.cell[0].toUpperCase(), o.x, y + 24); spacing(0);
+                        g.font = '700 32px ' + (o.cell[2] === MONO ? MONO : SANS); g.fillStyle = o.cell[2] === MONO ? '#0891b2' : (o.cell[2] || '#0b0f19');
+                        o.ls.forEach((l, i) => g.fillText(l, o.x, y + 68 + i * 40));
+                    });
+                    y += 62 + rowLines * 40 + 26;
+                }
+                /* tear-off divider with notches */
+                y += 4; g.setLineDash([14, 12]); g.lineWidth = 3; g.strokeStyle = '#cbd5e1'; g.beginPath(); g.moveTo(M + 30, y); g.lineTo(W - M - 30, y); g.stroke(); g.setLineDash([]);
+                g.fillStyle = '#ffffff'; [M, W - M].forEach(nx => { g.beginPath(); g.arc(nx, y, 24, 0, Math.PI * 2); g.fill(); g.lineWidth = 3; g.strokeStyle = '#d5dbe7'; g.beginPath(); g.arc(nx, y, 24, nx === M ? -Math.PI / 2 : Math.PI / 2, nx === M ? Math.PI / 2 : -Math.PI / 2); g.stroke() });
+                /* QR (same payload as the on-screen pass) */
+                y += 50;
+                const qrText = 'EVENTORA-PASS|' + reg.passId + '|' + reg.eventId + '|' + reg.attendeeName;
+                try {
+                    const qr = window.qrcode(0, 'M'); qr.addData(qrText); qr.make();
+                    const n = qr.getModuleCount(), quiet = 3, cell = Math.floor(400 / (n + quiet * 2)), dim = (n + quiet * 2) * cell, qx = Math.round((W - dim) / 2);
+                    g.fillStyle = '#ffffff'; g.fillRect(qx, y, dim, dim); g.lineWidth = 3; g.strokeStyle = '#e2e8f0'; g.strokeRect(qx, y, dim, dim);
+                    g.fillStyle = '#0b0f19';
+                    for (let r = 0; r < n; r++)for (let q = 0; q < n; q++)if (qr.isDark(r, q)) g.fillRect(qx + (q + quiet) * cell, y + (r + quiet) * cell, cell, cell);
+                    y += dim;
+                } catch (e) { g.fillStyle = '#64748b'; g.font = '700 28px ' + SANS; g.textAlign = 'center'; g.fillText('QR OFFLINE \u00b7 PASS ' + truncHash(reg.passId), W / 2, y + 200); g.textAlign = 'left'; y += 400 }
+                /* under-QR info */
+                g.textAlign = 'center';
+                y += 46; g.fillStyle = '#0891b2'; g.font = '700 28px ' + MONO; g.fillText(reg.passId, W / 2, y);
+                y += 40; g.fillStyle = '#64748b'; g.font = '400 24px ' + SANS; g.fillText('Scan this QR code at the gate for entry', W / 2, y);
+                y += 44; g.fillStyle = '#059669'; g.font = '700 24px ' + SANS; g.fillText((paidVia ? 'Payment Verified (' + methodLabel(ord.method) + ')' : 'Free RSVP') + '  \u00b7  NFC Encrypted  \u00b7  ECDSA-256', W / 2, y);
+                if (ord && ord.txnId) { y += 38; g.fillStyle = '#64748b'; g.font = '400 24px ' + SANS; g.fillText('Txn ' + ord.txnId + ' \u00b7 ' + fmtMoney(ord.total), W / 2, y) }
+                g.fillStyle = '#94a3b8'; g.font = '400 21px ' + SANS; g.fillText('Issued by Eventora \u00b7 Non-transferable \u00b7 Present this pass (printed or on screen) at the turnstile.', W / 2, H - M - 34);
+                g.textAlign = 'left';
+                /* wrap the rendered page into a single-page PDF (no external library needed) */
+                const bin = atob(c.toDataURL('image/jpeg', 0.95).split(',')[1]), jpg = new Uint8Array(bin.length);
+                for (let i = 0; i < bin.length; i++)jpg[i] = bin.charCodeAt(i);
+                const enc = t => new TextEncoder().encode(t), parts = [], offs = []; let pos = 0;
+                const push = u8 => { parts.push(u8); pos += u8.length };
+                const obj = (n, head, stream) => { offs[n] = pos; push(enc(n + ' 0 obj\n' + head)); if (stream) { push(enc('\nstream\n')); push(stream); push(enc('\nendstream')) } push(enc('\nendobj\n')) };
+                push(enc('%PDF-1.4\n'));
+                obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
+                obj(2, '<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+                obj(3, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>');
+                obj(4, '<< /Type /XObject /Subtype /Image /Width ' + W + ' /Height ' + H + ' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + jpg.length + ' >>', jpg);
+                const cs = enc('q 595.28 0 0 841.89 0 0 cm /Im0 Do Q');
+                obj(5, '<< /Length ' + cs.length + ' >>', cs);
+                const xr = pos; let xt = 'xref\n0 6\n0000000000 65535 f \n';
+                for (let i = 1; i <= 5; i++)xt += String(offs[i]).padStart(10, '0') + ' 00000 n \n';
+                push(enc(xt + 'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n' + xr + '\n%%EOF'));
+                downloadFile('eventora-ticket-' + String(ev.title).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + String(reg.passId).slice(-6) + '.pdf', new Blob(parts, { type: 'application/pdf' }), 'application/pdf');
+                toast('Ticket PDF downloaded.', 'ok');
+            } catch (e) { toast('Could not generate the ticket PDF. Please try again.', 'warn') }
         }
         function clampDD(dd) {
             dd.style.left = dd.style.right = dd.style.top = dd.style.bottom = '';
@@ -1524,6 +1629,7 @@
                 + '<span class="tier-b ' + (reg.tierName.includes('VIP') ? 'tier-vip' : reg.tierName === 'Virtual' ? 'tier-vir' : 'tier-std') + '" style="margin-top:6px">' + (reg.tierName.includes('VIP') ? ic('crown', 12) : ic('ticket', 12)) + ' ' + esc(reg.tierName) + '</span>'
                 + '<div class="p-grid"><div><label>Date</label><b>' + fmtRange(ev.startDate, ev.endDate) + ' \u00b7 ' + esc(ev.doors) + '</b></div><div><label>Venue</label><b>' + esc(ev.venue) + '</b></div><div><label>Pass ID</label><b class="mono" style="color:var(--cyan2)">' + truncHash(reg.passId) + '</b></div><div><label>Gate</label><b>Assigned at check-in</b></div></div>'
                 + '<div class="qr-panel" id="qr-host"></div>'
+                + '<div style="display:flex;justify-content:center;margin:14px 0 14px"><button class="btn btn-p" data-action="tkt-pdf" data-id="' + reg.id + '">' + ic('dl', 15) + ' Download Ticket (PDF)</button></div>'
                 + '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><span class="pill pill-mut">' + ic('shield', 11) + ' NFC Encrypted</span><span class="pill pill-mut">ECDSA-256</span><span class="pill pill-green">' + ic('check', 11) + ' ' + (paidVia ? 'Payment Verified (' + methodLabel(order.method) + ')' : 'Free RSVP') + '</span></div>'
                 + (order && order.txnId ? '<p class="small mut" style="text-align:center;margin-top:10px">Txn <span class="mono" style="color:#7dd3fc">' + esc(order.txnId) + '</span> \u00b7 ' + fmtMoney(order.total) + '</p>' : '')
                 + '</div></div>'
@@ -2601,6 +2707,7 @@
             },
             'tkt-tab': dd => { TK_TAB = dd.t; render() },
             'tkt-qr': dd => { const r = db.registrations.find(x => x.id === dd.id); if (r) passModal(r) },
+            'tkt-pdf': dd => { const r = db.registrations.find(x => x.id === dd.id); if (!r) return; const ev = db.events.find(e => e.id === r.eventId); if (ev) downloadTicketPDF(r, ev) },
             'tkt-ics': dd => { const r = db.registrations.find(x => x.id === dd.id); if (!r) return; const ev = db.events.find(e => e.id === r.eventId); if (ev) downloadICS(ev, r) },
             'tkt-cancel': dd => {
                 const r = db.registrations.find(x => x.id === dd.id); if (!r) return;
