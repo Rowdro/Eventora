@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://eventora-011.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://eventora-011.vercel.app/events</loc>
+  </url>
+
+  <url>
+    <loc>https://eventora-011.vercel.app/about</loc>
+  </url>
+
+  <url>
+    <loc>https://eventora-011.vercel.app/contact</loc>
+  </url>
+  <url>  
+    <loc>https://eventora-011.vercel.app/login</loc>
+  </url>
+  <url>
+    <loc>https://eventora-011.vercel.app/register</loc>
+  </url>
+</urlset>
